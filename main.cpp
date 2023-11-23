@@ -16,9 +16,7 @@ struct UNO {
     char num;    // Number of UNO card ( '0'-'9', 'D'(Draw), 'R'(Reverse), 'S'(Skip) )
 };
 
-int main() {
-
-    // Display the welcome screen and ask user to choose the game mode (i.e. the number of player)
+// Display the welcome screen and ask user to choose the game mode (i.e. the number of player)
     // Return the number of player (MAX: 10)
     int display_welcomeScreen() {
     int numOfPlayers;
@@ -35,6 +33,9 @@ int main() {
 
     return numOfPlayers;
 }
+
+
+int main() {
     int numOfPlayer = display_welcomeScreen();
 
     // Display and ask the user for the desired number of cards at the beginning of the game
