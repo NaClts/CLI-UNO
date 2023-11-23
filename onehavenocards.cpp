@@ -1,7 +1,6 @@
 // onehavenocards.cpp
-#include <iostream>
+
 #include "onehavenocards.h"
-using namesoace std;
 
 bool onePlayerNoCards(ListOfCards player[], int numOfPlayer) {
     for (int i = 0; i < numOfPlayer; i++) {
