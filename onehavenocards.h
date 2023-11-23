@@ -12,8 +12,9 @@ struct UNO {
     char num;   // Number of UNO card ( '0'-'9', 'D'(Draw), 'R'(Reverse), 'S'(Skip) )
 };
 
+// Define a structure to store all the cards of a player
 struct ListOfCards {
-    UNO card[100];
+    UNO card[100];      // Maximum number of cards can be owned by a player is 100
 };
 
 bool onePlayerNoCards(ListOfCards player[], int numOfPlayer);
