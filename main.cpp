@@ -7,39 +7,46 @@
 #include "initialcard.h"
 using namespace std;
 
-// Defining new type of variable "UNO"
-// For example,
-// ( UNO.col == 'n' && UNO.num == 'D' ) is Draw 4
-// ( UNO.col == 'b' && UNO.num == '7' ) is Blue 7
-struct UNO {
-    char col;   // Colour of UNO card ( 'b' , 'g' , 'r' , 'y' , 'n' )
-    char num;    // Number of UNO card ( '0'-'9', 'D'(Draw), 'R'(Reverse), 'S'(Skip) )
-};
 
 // Display the welcome screen and ask user to choose the game mode (i.e. the number of player)
-    // Return the number of player (MAX: 10)
-    int display_welcomeScreen() {
-    int numOfPlayers;
+// Return the number of player (MAX: 10)
+int display_welcomeScreen() {
+int numOfPlayers;
 
-    cout << "Welcome to UNO!\n";
-    cout << "Enter the number of players (1-" << 10 << "): ";
+cout << "Welcome to UNO!\n";
+cout << "Enter the number of players (1-" << 10 << "): ";
+cin >> numOfPlayers;
+
+// Validate the input
+while (numOfPlayers < 1 || numOfPlayers > 10) {
+    cout << "Invalid number of players. Please enter a number between 1 and " << 10 << ": ";
     cin >> numOfPlayers;
-
-    // Validate the input
-    while (numOfPlayers < 1 || numOfPlayers > 10) {
-        cout << "Invalid number of players. Please enter a number between 1 and " << 10 << ": ";
-        cin >> numOfPlayers;
-    }
+}
 
     return numOfPlayers;
 }
 
 
+// Display and ask the user for the desired number of cards at the beginning of the game
+// Maximum 100
+int display_initialNumOfCards() {
+int initialNumOfCards;
+
+cout << "Enter the initial number of cards for each player: ";
+cin >> initialNumOfCards;
+
+// Validate the input
+while (initialNumOfCards <= 0) {
+    cout << "Invalid initial number of cards. Please enter a positive number: ";
+    cin >> initialNumOfCards;
+}
+
+    return initialNumOfCards;
+}
+
 int main() {
     int numOfPlayer = display_welcomeScreen();
 
-    // Display and ask the user for the desired number of cards at the beginning of the game
-    // Maximum 100
     int initialNumOfCards = display_initialNumOfCards();
 
     // Define a structure to store all the cards of a player
