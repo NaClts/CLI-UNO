@@ -11,17 +11,17 @@ using namespace std;
 // Display the welcome screen and ask user to choose the game mode (i.e. the number of player)
 // Return the number of player (MAX: 10)
 int display_welcomeScreen() {
-int numOfPlayers;
+    int numOfPlayers;
 
-cout << "Welcome to UNO!\n";
-cout << "Enter the number of players (1-" << 10 << "): ";
-cin >> numOfPlayers;
-
-// Validate the input
-while (numOfPlayers < 1 || numOfPlayers > 10) {
-    cout << "Invalid number of players. Please enter a number between 1 and " << 10 << ": ";
+    cout << "Welcome to UNO!\n";
+    cout << "Enter the number of players (1-" << 10 << "): ";
     cin >> numOfPlayers;
-}
+
+    // Validate the input
+    while (numOfPlayers < 1 || numOfPlayers > 10) {
+        cout << "Invalid number of players. Please enter a number between 1 and " << 10 << ": ";
+        cin >> numOfPlayers;
+    }
     return numOfPlayers;
 }
 
@@ -29,18 +29,19 @@ while (numOfPlayers < 1 || numOfPlayers > 10) {
 // Display and ask the user for the desired number of cards at the beginning of the game
 // Maximum 100
 int display_initialNumOfCards() {
-int initialNumOfCards;
-
-cout << "Enter the initial number of cards for each player: ";
-cin >> initialNumOfCards;
-
-// Validate the input
-while (initialNumOfCards <= 0) {
-    cout << "Invalid initial number of cards. Please enter a positive number: ";
+    int initialNumOfCards;
+    
+    cout << "Enter the initial number of cards for each player: ";
     cin >> initialNumOfCards;
-}
+
+    // Validate the input
+    while (initialNumOfCards <= 0) {
+        cout << "Invalid initial number of cards. Please enter a positive number: ";
+        cin >> initialNumOfCards;
+    }
     return initialNumOfCards;
 }
+
 
 int main() {
     int numOfPlayer = display_welcomeScreen();
