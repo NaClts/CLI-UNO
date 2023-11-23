@@ -8,8 +8,8 @@
 // ( UNO.col == 'n' && UNO.num == 'D' ) is Draw 4
 // ( UNO.col == 'b' && UNO.num == '7' ) is Blue 7
 struct UNO {
-    char col; // Colour of UNO card ( 'b' , 'g' , 'r' , 'y' , 'n' )
-    char num;
+    char col;   // Colour of UNO card ( 'b' , 'g' , 'r' , 'y' , 'n' )
+    char num;   // Number of UNO card ( '0'-'9', 'D'(Draw), 'R'(Reverse), 'S'(Skip) )
 };
 
 struct ListOfCards {
