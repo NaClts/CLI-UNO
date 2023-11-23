@@ -22,7 +22,6 @@ while (numOfPlayers < 1 || numOfPlayers > 10) {
     cout << "Invalid number of players. Please enter a number between 1 and " << 10 << ": ";
     cin >> numOfPlayers;
 }
-
     return numOfPlayers;
 }
 
@@ -40,19 +39,12 @@ while (initialNumOfCards <= 0) {
     cout << "Invalid initial number of cards. Please enter a positive number: ";
     cin >> initialNumOfCards;
 }
-
     return initialNumOfCards;
 }
 
 int main() {
     int numOfPlayer = display_welcomeScreen();
-
     int initialNumOfCards = display_initialNumOfCards();
-
-    // Define a structure to store all the cards of a player
-    struct ListOfCards {
-        UNO card[100];      // Maximum number of cards can be owned by a player is 100
-    };
 
     // Maxiumun number of players is 10
     ListOfCards player[10];
