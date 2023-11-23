@@ -60,7 +60,7 @@ int main() {
     // If the number of cards holding by a player exceeds 100,
     // => the player can still draw a card,
     // => but a random card will be discarded automatically.
-    while( !onePlayerNoCards(player) ) {
+    while( !onePlayerNoCards(ListOfCards player[], int numOfPlayer) ) {
 
         // Ask for input of playing card from user or AI
         if ( counter % numOfPlayer == 0 )    // The turn of user
