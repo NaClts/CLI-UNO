@@ -3,6 +3,8 @@
 #include <iostream>
 #include <cstdlib>  // For calling srand(), rand()
 #include <ctime>    // For calling time()
+#include "WelcomeScreen.h"
+#include "initialcard.h"
 using namespace std;
 
 // Defining new type of variable "UNO"
