@@ -3,8 +3,7 @@
 #include <iostream>
 #include <cstdlib>  // For calling srand(), rand()
 #include <ctime>    // For calling time()
-#include "WelcomeScreen.h"
-#include "initialcard.h"
+#include "onehavenocards.h"
 using namespace std;
 
 
