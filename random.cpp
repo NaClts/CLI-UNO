@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <cstdlib>  // For calling srand(), rand()
+#include "random.h"
 #include "selfDefStruct.h"    // For calling struct UNO & ListOfCards
 using namespace std;
 
