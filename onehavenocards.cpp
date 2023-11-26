@@ -1,6 +1,7 @@
 // onehavenocards.cpp
 
 #include "onehavenocards.h"
+#include "selfDefStruct.h"  // For calling struct UNO & ListOfCards
 
 bool onePlayerNoCards(ListOfCards player[], int numOfPlayer) {
     for (int i = 0; i < numOfPlayer; i++) {

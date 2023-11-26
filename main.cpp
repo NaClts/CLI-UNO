@@ -4,6 +4,8 @@
 #include <cstdlib>  // For calling srand(), rand()
 #include <ctime>    // For calling time()
 #include "onehavenocards.h"
+#include "selfDefStruct.h"    // For calling struct UNO & ListOfCards
+#include "random.h" // For calling randomSingleUNO()
 using namespace std;
 
 
@@ -50,7 +52,7 @@ int main() {
     ListOfCards player[10];
 
     // Randomly assign initial UNO cards to all players
-    for (int i=0, i<numOfAI, i++) {
+    for (int i=0; i<numOfPlayer; i++) {
         for (int j=0; j<initialNumOfCards; j++)
             player[i].card[j] = randomSingleUNO( time(NULL) + j );
     }
@@ -63,7 +65,7 @@ int main() {
     struct playedUNO {
         UNO card;
         char colourToChange;    // Unless the latest card is "Wild" or "nD (Draw 4)", this should be set to 'n' (N/A)
-    }
+    };
     playedUNO currentCard;
 
     // Initialize the starting card
@@ -81,7 +83,7 @@ int main() {
         if ( counter % numOfPlayer == 0 )    // The turn of user
             currentCard = display_requestUser(player[0], currentCard);    // The card played by player is stored as "currentCard"
         else
-            AIIndex = counter % numOfPlayer    // The turn of AI
+            int AIIndex = counter % numOfPlayer;    // The turn of AI
             display_waitingForAI(currentCard, AIIndex, player[0]);     // Display which AI is playing and wait for a time delay of 1 second
             currentCard = AI_requestAI(player[AIIndex], currentCard);  // The card played by AI is stored as "currentCard"
         

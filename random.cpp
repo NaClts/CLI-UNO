@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <cstdlib>  // For calling srand(), rand()
+#include "selfDefStruct.h"    // For calling struct UNO & ListOfCards
 using namespace std;
 
 // This function takes integer as input to initialize the random seed
