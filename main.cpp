@@ -61,11 +61,6 @@ int main() {
     int counter = 0;        // The remainder of counter / numOfPlayer telling which player is going to play
     int round = 0;          // For the leaderboard
 
-    // Stores the latest played card as "currentCard"
-    struct playedUNO {
-        UNO card;
-        char colourToChange;    // Unless the latest card is "Wild" or "nD (Draw 4)", this should be set to 'n' (N/A)
-    };
     playedUNO currentCard;
 
     // Initialize the starting card

@@ -18,4 +18,10 @@ struct ListOfCards {
     UNO card[100];      // Maximum number of cards can be owned by a player is 100
 };
 
+// Stores the latest played card as "currentCard"
+struct playedUNO {
+    UNO card;
+    char colourToChange;    // Unless the latest card is "Wild" or "nD (Draw 4)", this should be set to 'n' (N/A)
+};
+
 #endif
