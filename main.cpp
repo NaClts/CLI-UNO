@@ -11,38 +11,56 @@ using namespace std;
 
 // Display the welcome screen and ask user to choose the game mode (i.e. the number of player)
 // Return the number of player (MAX: 10)
-int display_welcomeScreen() {
-    int numOfPlayers;
-
-    cout << "Welcome to UNO!\n";
-    cout << "Enter the number of players (1-" << 10 << "): ";
-    cin >> numOfPlayers;
-
-    // Validate the input
-    while (numOfPlayers < 1 || numOfPlayers > 10) {
-        cout << "Invalid number of players. Please enter a number between 1 and " << 10 << ": ";
-        cin >> numOfPlayers;
-    }
-    return numOfPlayers;
+void displayWelcomeScreen() {
+    cout << "==== Welcome to UNO Game ====" << endl;
+    cout << "1. Start New Game" << endl;
+    cout << "2. Load Game" << endl;
+    cout << "3. About Game" << endl;
+    cout << "4. Exit" << endl;
 }
 
+int getValidNumPlayers() {
+    int numPlayers;
 
-// Display and ask the user for the desired number of cards at the beginning of the game
-// Maximum 100
-int display_initialNumOfCards() {
+    do {
+        cout << "Enter the number of players (2-10): ";
+        cin >> numPlayers;
+
+        if (numPlayers >= 2 && numPlayers <= 10) {
+            break;  // Valid input, exit the loop
+        }
+        else {
+            cout << "Invalid input. Please enter a number between 2 and 10." << endl;
+        }
+    } while (true);
+
+    return numPlayers;
+}
+
+int getValidInitialNumOfCards() {
     int initialNumOfCards;
-    
-    cout << "Enter the initial number of cards for each player: ";
-    cin >> initialNumOfCards;
 
-    // Validate the input
-    while (initialNumOfCards <= 0) {
-        cout << "Invalid initial number of cards. Please enter a positive number: ";
+    do {
+        cout << "Enter the initial hand size: ";
         cin >> initialNumOfCards;
-    }
+
+        if (initialNumOfCards > 0) {
+            break;  // Valid input, exit the loop
+        }
+        else {
+            cout << "Invalid input. Please enter a positive number." << endl;
+        }
+    } while (true);
+
     return initialNumOfCards;
 }
 
+void startNewGame() {
+    int numOfPlayers = getValidNumPlayers();
+    int initialNumOfCards = getValidInitialNumOfCards();
+
+    cout << "\nNew game started with " << numOfPlayers << " players and initial hand size of " << initialNumOfCards << "." << endl;
+}
 
 int main() {
     int numOfPlayer = display_welcomeScreen();
