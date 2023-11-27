@@ -97,6 +97,7 @@ int main() {
             currentCard = display_requestUser(player[0], currentCard);    // The card played by player is stored as "currentCard"
         else
             int AIIndex = counter % numOfPlayer;    // The turn of AI
+            int handsize = sizeof(player[AIIndex].card) / sizeof(player[AIIndex].card[0]);//calculate array size of player[AIIndex].card
             display_waitingForAI(currentCard, AIIndex, player[0]);     // Display which AI is playing and wait for a time delay of 1 second
             currentCard = AI_requestAI(player[AIIndex], currentCard);  // The card played by AI is stored as "currentCard"
         
