@@ -15,7 +15,9 @@ struct UNO {
 
 // Define a structure to store all the cards of a player
 struct ListOfCards {
-    UNO card[100];      // Maximum number of cards can be owned by a player is 100
+    UNO *card;   //change into dynamic
+    int capacity;
+    int size;
 };
 
 // Stores the latest played card as "currentCard"
