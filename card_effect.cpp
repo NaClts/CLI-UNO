@@ -26,7 +26,7 @@ void Draw2(ListOfCards &player[AIIndex], int handsize){ // adding 2 cards to the
 	}
 }
 
-void Wild( playedUNO &currentCard, int size){ //change the color 
+void Wild( playedUNO &currentCard){ //change the color 
 	char changeToColor;
 	cin >> changeToColor;
 	switch(changeToColor){
