@@ -60,29 +60,24 @@ void startNewGame() {
     int initialNumOfCards = getValidInitialNumOfCards();
 
     cout << "\nNew game started with " << numOfPlayers << " players and initial hand size of " << initialNumOfCards << "." << endl;
-}
 
-int main() {
-    int numOfPlayer = display_welcomeScreen();
-    int initialNumOfCards = display_initialNumOfCards();
-
-    // Maxiumun number of players is 10
+    // Maximum number of players is 10
     ListOfCards player[10];
 
     // Randomly assign initial UNO cards to all players
-    for (int i=0; i<numOfPlayer; i++) {
-        for (int j=0; j<initialNumOfCards; j++)
-            player[i].card[j] = randomSingleUNO( time(NULL) + j );
+    for (int i = 0; i < numOfPlayers; i++) {
+        for (int j = 0; j < initialNumOfCards; j++)
+            player[i].card[j] = randomSingleUNO(time(NULL) + j);
     }
 
     bool reverse = false;   // For reverse card - true if reverse card is played
-    int counter = 0;        // The remainder of counter / numOfPlayer telling which player is going to play
+    int counter = 0;        // The remainder of counter / numOfPlayers telling which player is going to play
     int round = 0;          // For the leaderboard
 
     playedUNO currentCard;
 
     // Initialize the starting card
-    currentCard.card = randomSingleUNO( time(NULL) - 123456 );
+    currentCard.card = randomSingleUNO(time(NULL) - 123456);
     currentCard.colourToChange = 'n';
 
     // Each loop asks a player (user or AI) to play a suitable card, then determine and execute the action of the played card
@@ -90,35 +85,65 @@ int main() {
     // If the number of cards holding by a player exceeds 100,
     // => the player can still draw a card,
     // => but a random card will be discarded automatically.
-    while( !onePlayerNoCards(ListOfCards player[], int numOfPlayer) ) {
-
+    while (!onePlayerNoCards(ListOfCards player[], int numOfPlayers)) {
         // Ask for input of playing card from user or AI
-        if ( counter % numOfPlayer == 0 )    // The turn of user
+        if (counter % numOfPlayers == 0)    // The turn of user
             currentCard = display_requestUser(player[0], currentCard);    // The card played by player is stored as "currentCard"
-        else
-            int AIIndex = counter % numOfPlayer;    // The turn of AI
-            int handsize = sizeof(player[AIIndex].card) / sizeof(player[AIIndex].card[0]);//calculate array size of player[AIIndex].card
-            display_waitingForAI(currentCard, AIIndex, player[0]);     // Display which AI is playing and wait for a time delay of 1 second
-            currentCard = AI_requestAI(player[AIIndex], currentCard);  // The card played by AI is stored as "currentCard"
-        
+        else {
+            int AIIndex = counter % numOfPlayers;    // The turn of AI
+            int handsize = sizeof(player[AIIndex].card) / sizeof(player[AIIndex].card[0]); // calculate array size of player[AIIndex].card
+            display_waitingForAI(currentCard, AIIndex, player[0]); // Display which AI is playing and wait for a time delay of 1 second
+            currentCard = AI_requestAI(player[AIIndex], currentCard); // The card played by AI is stored as "currentCard"
+        }
+
         ///////////////////////////////////////////
         // (TO BE FILLED) Action after each cards//
         ///////////////////////////////////////////
 
-        // Store the current game if user typed "wq" in his round
-        //else if ( currentCard.card.col == 'w' && currentCard.card.col == 'q' )
-        //    progressSave(player);
-
-        // Pass the turn to next player
-        if ( reverse == true  )
+        // Pass the turn to the next player
+        if (reverse == true)
             counter--;
         else
             counter++;
     }
 
-    // Determine and display who win
+    // Determine and display who wins
     int winPlayerIndex = whoWin(player);
     display_result(winPlayerIndex, round);
+}
+
+int main() {
+    int choice;
+
+    do {
+        displayWelcomeScreen();
+
+        cout << "Enter your choice (1-4): ";
+        cin >> choice;
+
+        switch (choice) {
+        case 1:
+            startNewGame();
+            break;
+        case 2:
+            // Add code for loading game
+            cout << "Loading game..." << endl;
+            break;
+        case 3:
+            // Add code for about game
+            cout << "UNO Game - About" << endl;
+            break;
+        case 4:
+            cout << "Exiting the game. Goodbye!" << endl;
+            break;
+        default:
+            cout << "Invalid choice. Please enter a number between 1 and 4." << endl;
+        }
+
+        cout << endl;
+
+    } while (choice != 4);
 
     return 0;
 }
+
