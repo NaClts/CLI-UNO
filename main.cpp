@@ -7,6 +7,7 @@
 #include "selfDefStruct.h"    // For calling struct UNO & ListOfCards
 #include "random.h" // For calling randomSingleUNO()
 #include "AI_requestAI.h" // For calling AI_requestAI()
+#include "card_effect.h" // For calling card_effect functions
 using namespace std;
 
 
