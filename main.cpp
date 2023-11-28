@@ -105,10 +105,17 @@ void startNewGame() {
             counter--;
         else
             counter++;
+       
+        // Determine and display who wins
+        int winPlayerIndex = whoWin(ListOfCards player[], int numOfPlayers);
+        if (winPlayerIndex > -1) {
+            display_result(winPlayerIndex, round);
+            break;
+        }
     }
 
     // Determine and display who wins
-    int winPlayerIndex = whoWin(player);
+    winPlayerIndex = whoWin(ListOfCards player[], int numOfPlayers);
     display_result(winPlayerIndex, round);
 }
 
