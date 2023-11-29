@@ -89,7 +89,7 @@ void startNewGame() {
     // => the player can still draw a card,
     // => but a random card will be discarded automatically.
     bool crowned = false
-    while (!onePlayerNoCards(ListOfCards player[], *numOfPlayers)) {
+    while (!onePlayerNoCards(player[], *numOfPlayers)) {
         // Ask for input of playing card from user or AI
         if (counter % *numOfPlayers == 0)    // The turn of user
             currentCard = display_requestUser(player[0], currentCard);    // The card played by player is stored as "currentCard"
@@ -97,8 +97,8 @@ void startNewGame() {
             int AIIndex = counter % *numOfPlayers;    // The turn of AI
             display_waitingForAI(currentCard, AIIndex, player[0]); // Display which AI is playing and wait for a time delay of 1 second
             currentCard = AI_requestAI(player[], AIIndex ,currentCard); // The card played by AI is stored as "currentCard"
+            readCard(); //card effect is applied (working in progress)
         }
-        readCard(); //card effect is applied (working in progress)
         ///////////////////////////////////////////
         // (TO BE FILLED) Action after each cards//
         ///////////////////////////////////////////
