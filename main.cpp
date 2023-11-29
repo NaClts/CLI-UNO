@@ -123,6 +123,7 @@ void startNewGame() {
         winPlayerIndex = whoWin(player[], *numOfPlayers);
         display_result(winPlayerIndex, round);
     }
+    delete numOfPlayers; 
 }
 
 int main() {
