@@ -73,7 +73,7 @@ void startNewGame() {
     // Randomly assign initial UNO cards to all players
     for (int i = 0; i < *numOfPlayers; i++) {
         for (int j = 0; j < initialNumOfCards; j++)
-            player[i].card[j] = randomSingleUNO(time(NULL) + j);
+            player[i].card[j] = randomSingleUNO(time(NULL) + i + j);
     }
 
     bool reverse = false;   // For reverse card - true if reverse card is played
@@ -85,6 +85,11 @@ void startNewGame() {
     // Initialize the starting card
     currentCard.card = randomSingleUNO(time(NULL) - 123456);
     currentCard.colourToChange = 'n';
+    // Exclude non-coloured card as initial card
+    if ( currentCard.card.col == 'n' ) {
+        currentCard.card.col = 'b';
+        currentCard.card.num = '0';
+    }
 
     // Each loop asks a player (user or AI) to play a suitable card, then determine and execute the action of the played card
     // Exit the loop when one of the player played all of his/her cards

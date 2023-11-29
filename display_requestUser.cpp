@@ -14,7 +14,7 @@ playedUNO display_requestUser( ListOfCards user[] , playedUNO currentCard , int 
     system("clear");
 
     //1 Print the number of AI on the top 
-    cout << "Player :" << endl;
+    cout << "Current player :" << endl;
     cout << "\033[1;32;40m[YOU]\033[0m";
     for (int i = 2 ; i < (numOfPlayer + 1) ; i++ ) {
         cout << " AI" << i;
