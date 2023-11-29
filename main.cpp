@@ -98,7 +98,7 @@ void startNewGame() {
             display_waitingForAI(currentCard, AIIndex, player[0]); // Display which AI is playing and wait for a time delay of 1 second
             currentCard = AI_requestAI(player[], AIIndex ,currentCard); // The card played by AI is stored as "currentCard"
         }
-
+        readCard(); //card effect is applied (working in progress)
         ///////////////////////////////////////////
         // (TO BE FILLED) Action after each cards//
         ///////////////////////////////////////////
