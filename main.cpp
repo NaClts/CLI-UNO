@@ -10,6 +10,7 @@
 #include "AI_requestAI.h" // For calling AI_requestAI()
 #include "card_effect.h" // For calling card_effect functions
 #include "display_requestUser.h" // For calling display_requestUser()
+#include "display_waitingForAI.h"   // For calling display_waitingForAI.h()
 
 using namespace std;
 
