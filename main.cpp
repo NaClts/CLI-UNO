@@ -1,6 +1,7 @@
 // main.cpp
 
 #include <iostream>
+#include <fstream>
 #include <cstdlib>  // For calling srand(), rand()
 #include <ctime>    // For calling time()
 #include "onehavenocards.h"
