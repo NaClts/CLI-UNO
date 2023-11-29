@@ -183,10 +183,11 @@ playedUNO display_requestUser( ListOfCards user[] , playedUNO currentCard , int 
         }
     }
     else {
-        //while ( user[0].card[i+1].col ) {
-        //    user[0].card[i] = user[0].card[i+1];
-        //    i++;
-        //}
+        // Put the cards to the front and replace the played card
+        while ( user[0].card[i+1].col ) {
+            user[0].card[i] = user[0].card[i+1];
+            i++;
+        }
 
         // Delete the newly played card from the card list
         user[0].card[i].col = '\0';
