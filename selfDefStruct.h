@@ -15,9 +15,7 @@ struct UNO {
 
 // Define a structure to store all the cards of a player
 struct ListOfCards {
-    UNO *card;   //change into dynamic
-    int capacity;
-    int size;
+    UNO card[100];
 };
 
 // Stores the latest played card as "currentCard"
