@@ -87,6 +87,7 @@ void startNewGame() {
     // If the number of cards holding by a player exceeds 100,
     // => the player can still draw a card,
     // => but a random card will be discarded automatically.
+    bool crowned = false
     while (!onePlayerNoCards(ListOfCards player[], int numOfPlayers)) {
         // Ask for input of playing card from user or AI
         if (counter % numOfPlayers == 0)    // The turn of user
@@ -108,17 +109,20 @@ void startNewGame() {
         else
             counter++;
        
-        // Determine and display who wins
-        int winPlayerIndex = whoWin(ListOfCards player[], int numOfPlayers);
+        // Determine and display who wins while no one played all the cards
+        int winPlayerIndex = whoWin(player[], numOfPlayers);
         if (winPlayerIndex > -1) {
             display_result(winPlayerIndex, round);
+            crowned = true;
             break;
         }
     }
 
-    // Determine and display who wins
-    winPlayerIndex = whoWin(ListOfCards player[], int numOfPlayers);
-    display_result(winPlayerIndex, round);
+    // Determine and display who wins while someone played all the cards
+    if (crowned == false){
+        winPlayerIndex = whoWin(player[], numOfPlayers);
+        display_result(winPlayerIndex, round);
+    }
 }
 
 int main() {
