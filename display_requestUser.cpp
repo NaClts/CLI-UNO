@@ -9,7 +9,7 @@
 #include "display_requestUser.h"    // Allow other programs to call this function via the header file
 using namespace std;
 
-playedUNO display_requestUser( ListOfCards user[0] , playedUNO currentCard , int numOfPlayer ) {
+playedUNO display_requestUser( ListOfCards user[] , playedUNO currentCard , int numOfPlayer ) {
 
     system("clear");
 
@@ -67,9 +67,10 @@ playedUNO display_requestUser( ListOfCards user[0] , playedUNO currentCard , int
     cout << "(S = Skip)" << endl;
 
     //4 Print the cards that are held by the player currently
+    cout << "Your cards :" << endl;
     int n = 0;  // Total no. of cards
     int i = 0;
-    UNO cardRead = user.card[i];
+    UNO cardRead = user[0].card[i];
     while ( i < 100 ) {
         if ( cardRead.col ) {
             if ( cardRead.col == 'b')
@@ -80,11 +81,11 @@ playedUNO display_requestUser( ListOfCards user[0] , playedUNO currentCard , int
                 cout << "\033[1;31m";
             else if ( cardRead.col == 'y')
                 cout << "\033[1;33m";
-            cout << user.card[i].num << " " << "\033[0m" ;
+            cout << user[0].card[i].num << " " << "\033[0m" ;
             n++;
         }
         i++;
-        cardRead = user.card[i];
+        cardRead = user[0].card[i];
     }
     cout << endl << endl;
 
@@ -102,16 +103,18 @@ playedUNO display_requestUser( ListOfCards user[0] , playedUNO currentCard , int
         cin >> userInput;
 
         //EXCEPTION: If user hopes to draw a new card, the loop is exited
-        if ( userInput == "DRAW" )
+        if ( userInput == "DRAW" ) {
             draw = true;
             break;
-
+        }
+        
         col = userInput.c_str()[0];
         num = userInput.c_str()[1];
         i = 0;  // Defined earlier
         cardRead = user[0].card[i];     // Defined earlier
-        
+
         //5.1 Check whether the card is in the user card list
+        cardExist = false;
         while ( i < 100 && !cardExist) {
             if ( col == cardRead.col && num == cardRead.num )
                 cardExist = true;
@@ -180,11 +183,12 @@ playedUNO display_requestUser( ListOfCards user[0] , playedUNO currentCard , int
         }
     }
     else {
-        // Delete the newly played card from the card list
         //while ( user[0].card[i+1].col ) {
         //    user[0].card[i] = user[0].card[i+1];
         //    i++;
         //}
+
+        // Delete the newly played card from the card list
         user[0].card[i].col = '\0';
         user[0].card[i].num = '\0';
         
