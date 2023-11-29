@@ -13,13 +13,7 @@ void readCard(ListOfCards &player[], playedUNO currentCard, int AIIndex, int &co
 				Draw2(player[], AIIndex);
 				break;
 			case 'R':
-				if(reverse == false){
-					reverse = true;
-				}
-				else{
-					reverse = false;
-				}
-				break;
+				reverse = (reverse == false) ? true : false;
 			case 'S':
 				skip(counter, reverse);
 				break;
