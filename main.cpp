@@ -21,14 +21,14 @@ void displayWelcomeScreen() {
     cout << "4. Exit" << endl;
 }
 
-int getValidNumPlayers() {
-    int numPlayers;
+void getValidNumPlayers(int*& numPlayers) {
+    numPlayers = new int;
 
     do {
         cout << "Enter the number of players (2-10): ";
-        cin >> numPlayers;
+        cin >> *numPlayers;
 
-        if (numPlayers >= 2 && numPlayers <= 10) {
+        if (*numPlayers >= 2 && *numPlayers <= 10) {
             break;  // Valid input, exit the loop
         }
         else {
@@ -36,7 +36,6 @@ int getValidNumPlayers() {
         }
     } while (true);
 
-    return numPlayers;
 }
 
 int getValidInitialNumOfCards() {
@@ -58,16 +57,17 @@ int getValidInitialNumOfCards() {
 }
 
 void startNewGame() {
-    int numOfPlayers = getValidNumPlayers();
+    int* numOfPlayers
+    getValidNumPlayers(numOfPlayers);
     int initialNumOfCards = getValidInitialNumOfCards();
 
-    cout << "\nNew game started with " << numOfPlayers << " players and initial hand size of " << initialNumOfCards << "." << endl;
+    cout << "\nNew game started with " << *numOfPlayers << " players and initial hand size of " << initialNumOfCards << "." << endl;
 
     // Maximum number of players is 10
     ListOfCards player[10];
 
     // Randomly assign initial UNO cards to all players
-    for (int i = 0; i < numOfPlayers; i++) {
+    for (int i = 0; i < *numOfPlayers; i++) {
         for (int j = 0; j < initialNumOfCards; j++)
             player[i].card[j] = randomSingleUNO(time(NULL) + j);
     }
@@ -88,12 +88,12 @@ void startNewGame() {
     // => the player can still draw a card,
     // => but a random card will be discarded automatically.
     bool crowned = false
-    while (!onePlayerNoCards(ListOfCards player[], int numOfPlayers)) {
+    while (!onePlayerNoCards(ListOfCards player[], *numOfPlayers)) {
         // Ask for input of playing card from user or AI
-        if (counter % numOfPlayers == 0)    // The turn of user
+        if (counter % *numOfPlayers == 0)    // The turn of user
             currentCard = display_requestUser(player[0], currentCard);    // The card played by player is stored as "currentCard"
         else {
-            int AIIndex = counter % numOfPlayers;    // The turn of AI
+            int AIIndex = counter % *numOfPlayers;    // The turn of AI
             int handsize = sizeof(player[AIIndex].card) / sizeof(player[AIIndex].card[0]); // calculate array size of player[AIIndex].card
             display_waitingForAI(currentCard, AIIndex, player[0]); // Display which AI is playing and wait for a time delay of 1 second
             currentCard = AI_requestAI(player[AIIndex], currentCard); // The card played by AI is stored as "currentCard"
@@ -110,7 +110,7 @@ void startNewGame() {
             counter++;
        
         // Determine and display who wins while no one played all the cards
-        int winPlayerIndex = whoWin(player[], numOfPlayers);
+        int winPlayerIndex = whoWin(player[], *numOfPlayers);
         if (winPlayerIndex > -1) {
             display_result(winPlayerIndex, round);
             crowned = true;
@@ -120,7 +120,7 @@ void startNewGame() {
 
     // Determine and display who wins while someone played all the cards
     if (crowned == false){
-        winPlayerIndex = whoWin(player[], numOfPlayers);
+        winPlayerIndex = whoWin(player[], *numOfPlayers);
         display_result(winPlayerIndex, round);
     }
 }
