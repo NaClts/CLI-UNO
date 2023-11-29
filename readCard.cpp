@@ -3,17 +3,22 @@
 #include "selfDefStruct.h"
 #include "card_effect.h"
 
-void readCard(ListOfCards &player[AIIndex], playedUNO currentCard, int handsize, int &counter, bool reverse){
+void readCard(ListOfCards &player[], playedUNO currentCard, int AIIndex, int &counter, bool reverse){
 	//effect only for draw2, reverse, skip
 	char check_col = currentCard.card.col;
 	char check_num = currentCard.card.num;
 	if(check_col != 'n'){
 		switch(check_num){
 			case 'D':
-				Draw2(player[AIIndex], handsize);
+				Draw2(player[], AIIndex);
 				break;
 			case 'R':
-				reverse = true;
+				if(reverse == false){
+					reverse = true;
+				}
+				else{
+					reverse = false;
+				}
 				break;
 			case 'S':
 				skip(counter, reverse);
@@ -26,7 +31,7 @@ void readCard(ListOfCards &player[AIIndex], playedUNO currentCard, int handsize,
 				Wild(currentCard);
 				break;
 			case 'D':
-				WildDraw(player[AIIndex], handsize);
+				WildDraw(player[], AIIndex);
 				break;
 		}
 	}
