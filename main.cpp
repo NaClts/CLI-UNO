@@ -116,6 +116,7 @@ void startNewGame() {
             crowned = true;
             break;
         }
+        saveGameProgress(saveFile, player, numOfPlayers, currentCard, counter, round);
     }
 
     // Determine and display who wins while someone played all the cards
