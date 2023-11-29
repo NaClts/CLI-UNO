@@ -9,6 +9,7 @@
 #include "random.h" // For calling randomSingleUNO()
 #include "AI_requestAI.h" // For calling AI_requestAI()
 #include "card_effect.h" // For calling card_effect functions
+#include "display_requestUser.h" // For calling display_requestUser()
 
 using namespace std;
 
@@ -93,7 +94,7 @@ void startNewGame() {
     while (!onePlayerNoCards(player[], *numOfPlayers)) {
         // Ask for input of playing card from user or AI
         if (counter % *numOfPlayers == 0)    // The turn of user
-            currentCard = display_requestUser(player[0], currentCard);    // The card played by player is stored as "currentCard"
+            currentCard = display_requestUser(player[], currentCard, numOfPlayers);    // The card played by player is stored as "currentCard"
         else {
             int AIIndex = counter % *numOfPlayers;    // The turn of AI
             display_waitingForAI(currentCard, AIIndex, player[0]); // Display which AI is playing and wait for a time delay of 1 second
