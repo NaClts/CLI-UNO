@@ -27,7 +27,7 @@ void Draw2(ListOfCards &player[], int AIIndex){ // adding 2 cards to the player
 	}
 }
 
-void Wild( playedUNO &currentCard){ //change the color 
+void Wild(playedUNO &currentCard){ //change the color 
 	char changeToColor; // getting input from the user
 	cin >> changeToColor; //here only valid inputs are 'b', 'r', 'g', 'y' 
 	switch(changeToColor){
