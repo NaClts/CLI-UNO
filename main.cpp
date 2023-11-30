@@ -112,7 +112,7 @@ void startNewGame() {
     bool crowned = false;
     bool save = false;  // Whether user decided to quit and save the file
     bool newOrNot = false; // Whether the played card / discard is newly played, then the program can determine whether it needs to execute the card action
-    while (!onePlayerNoCards(player, numOfPlayers && !save)) {
+    while (!onePlayerNoCards(player, numOfPlayers) && !save) {
 
 	// Add a time delay
         cout << endl;
@@ -238,7 +238,7 @@ void loadGame() {
     // If the number of cards holding by a player exceeds 100,
     // => the player can still draw a card,
     // => but a random card will be discarded automatically.
-    while (!onePlayerNoCards(player, numOfPlayers && !save)) {
+    while (!onePlayerNoCards(player, numOfPlayers) && !save) {
 
 	// Add a time delay
         cout << endl;
