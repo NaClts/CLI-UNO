@@ -110,7 +110,31 @@ void startNewGame() {
         ///////////////////////////////////////////
         // (TO BE FILLED) Action after each cards//
         ///////////////////////////////////////////
-
+	char check_col = currentCard.card.col;
+	char check_num = currentCard.card.num;
+	 // check the color whether it is 'n' or not
+    if(check_col != 'n'){ //if it is not, card effect only for D, R, S
+		switch(check_num){
+			case 'D':
+				Draw2(player[], counter%*numOfPlayers);
+				break;
+			case 'R':
+				reverse = (reverse == false) ? true : false;
+			case 'S':
+				skip(counter, reverse);
+				break;
+		}
+	}
+	else{ // if the color is 'n', only 'W', 'D' 
+		switch(check_num){
+			case 'W':
+				Wild(currentCard);
+				break;
+			case 'D':
+				WildDraw(player[], counter%*numOfPlayers);
+				break;
+		}
+	}
         // Pass the turn to the next player
         if (reverse == true)
             counter--;
