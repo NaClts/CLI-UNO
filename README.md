@@ -27,10 +27,10 @@ This UNO game implementation provides a command-line interface to play the game 
 - Each blocks or lines of code includes explanation for its role. **(In-code documentation)**
 
 ## Compliation & Installation
-1. Clone the repository: 'https://github.com/NaClts/CLI-UNO.git'
-2. Navigate to the project directory: `cd uno-game`
+1. Clone the repository: `git clone "https://github.com/NaClts/CLI-UNO.git"`
+2. Navigate to the project directory: `cd CLI-UNO-main`
 3. Compile the source code: `make`
-4. Run the game: `./hkuno`
+4. Run the game: `./main`
 
 ## Controls & Instructions (How to play)
 If you run the game, there are 4 options for you:
