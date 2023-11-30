@@ -2,52 +2,47 @@
 # /////////// Welcome to HKUNO ///////////
 # //////////////////////////////////////////////
 ENGG1340 / COMP 2113 Group Project 2023/2024 - Group #21
-## Team members
+**## Team members**
 - Baek Seunghyeon (3035821659)
 - Fan Zihan (3035948471)
 - Fu Wenqi (3036098053)
 - Wei Jianfeng (3036094899)
 - Tong Cheuk Yin (3036068503)
 
-## Description
+**## Description**
 UNO is a classic card game that is played with a specially printed deck. The objective of the game is to be the first player to get rid of all your cards. Players take turns matching a card in their hand with the current card shown on top of the deck either by color or number. The game also includes special action cards that can change the course of the game. With this idea, we designed text-based UNO game called HKUNO based on C++. This UNO game supports saving and loading options for players for convenience.  
 
 This UNO game implementation provides a command-line interface to play the game against computer opponents.
 
-## Features
+**## Features**
 - Play against computer opponents.
 - Interactive command-line interface.
 - Special action cards: Draw 2, Reverse, Skip, and Wild cards(Wild and Wild Draw 4).
-- The first card is randomly gernerated for the equality by the function "randomSingleUNO()". (Generation of random game sets or events)
-- Array data structure is used for storing the player's cards and AIs' cards. (Data structures for storing game status) 
-- Dynamic memory allocation is used for storing players and players' cards. (Dynamic Memory Management)
-- File I/O mechanism for storing or loading game status. (File Input/Output)
-- Each critical function (e.g. AI behavior, card effect, etc) is stored in different files rather than main program (Program codes in multiple files)
-- Each functions and variable used are in proper name style with correct indentation (Proper indentation and naming style)
-- Each blocks or lines of code includes explanation for its role (In-code documentation)
+- The first card is randomly gernerated for the equality by the function "randomSingleUNO()". **(Generation of random game sets or events)**
+- Array data structure is used for storing the player's cards and AIs' cards. **(Data structures for storing game status)** 
+- Dynamic memory allocation is used for storing players and players' cards. **(Dynamic Memory Management)**
+- Player has an option called "wq" for storing and quit the current game or loading game status in the beginning of the game. **(File Input/Output)**
+- Each critical function (e.g. AI behavior, card effect, etc) is stored in different files rather than main program. **(Program codes in multiple files)**
+- Each functions and variable used are in proper name style with correct indentation. **(Proper indentation and naming style)**
+- Each blocks or lines of code includes explanation for its role. **(In-code documentation)**
 
-## Compliation & Installation
+**## Compliation & Installation**
 1. Clone the repository: 'add github link here'
 2. Navigate to the project directory: `cd uno-game`
 3. Compile the source code: `gcc uno.c -o uno`
 4. Run the game: `./hkuno`
 
-## Usage
-- Upon starting the game, you will be prompted to enter the number of computer opponents and the number of cards for each player starts with.
-- The game will display the current card on top of the deck and your hand.
-- Follow the instructions to play your turn, either by selecting a card to play or drawing a card.
-- The game will automatically simulate the turns of computer opponents.
-- Continue playing until a player wins by getting rid of all their cards.
+**## Controls & Instructions (How to play)**
+If you run the game, there are 4 options for you:
 
-## Controls & Instructions (How to play)
-If you run the game, there are 4 options for you. 
 1. start a new game
 2. Load a game
 3. About this game
 4. Exit the game
+
 Based on your choice, you can start a new game or load a game if you have previously played this game. Rather than that, you can choose to get brief information about this game or leave this game.
 
-Here comes the Rule of the HKUNO game:
+**Here comes the Rule of the HKUNO game:**
 
 1. Starting the Game: 
 You will be prompted to enter the number of AI opponents and the number of cards for each player to start with. The remaining deck is placed in the center and the random top card is revealed to start the discard pile.
