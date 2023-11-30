@@ -105,6 +105,13 @@ playedUNO display_requestUser( ListOfCards user[] , playedUNO currentCard , int 
         cout << "Which card would you like to play? ";
         cin >> userInput;
 
+        if (userInput == "wq") {
+        // Set the flag to indicate that 'wq' has been played
+        saveAndExit = true;
+        valid = true;
+        return playedUNO();  // Return an empty playedUNO object
+    }
+
         //EXCEPTION: If user hopes to draw a new card, the loop is exited
         if ( userInput == "DRAW" ) {
             draw = true;
