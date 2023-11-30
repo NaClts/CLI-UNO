@@ -50,27 +50,30 @@ Based on your choice, you can start a new game or load a game if you have previo
 Here comes the Rule of the HKUNO game:
 
 1. Starting the Game: 
-The game starts by dealing a certain number of cards to each player. The remaining deck is placed in the center and the top card is revealed to start the discard pile.
+You will be prompted to enter the number of AI opponents and the number of cards for each player to start with. The remaining deck is placed in the center and the random top card is revealed to start the discard pile.
 
 2. During Your Turn: 
-During your turn, you must match a card from your hand to the card on the top of the discard pile. The match can be based on number, color, or symbol.
+During your turn, you have to make a decision, to put valid card or draw on card from the deck and finish the turn. To put the valid card, you need to check the color or number of the current card. 
 
 3. Special Cards: 
 There are special cards in the game like 'Skip', 'Reverse', 'Draw Two', 'Wild', and 'Wild Draw Four' which have unique effects on the gameplay.
+- Skip : Skip card makes a jump so that original next player cannot play for his/her turn.
+- Reverse: Reverse card changes the direction of the turns and it can be overlapped.
+- Draw Two: Draw Two card makes next player to get two extra cards from the deck.
+- Wild: When you put wild card, you can choose which color of card the next player should put. This can be a critical card if you use when everyone get small number of cards!
+- Wild Draw Four: This card makes next player take FOUR cards from the deck. If you consider the objective of this game, this is a really strong card!! 
 
-4. AI Players: 
-The game features AI players. Their behavior is defined in the AI_requestAI.cpp file.
+5. AI Players: 
+You are going to play against as many AI players as you want! If you want to know about their behavior, you may refer to AI_requestAI.cpp.
 
-5. Saving and Loading Game Progress: 
+6. Saving and Loading Game Progress: 
 You can save and load game progress. The functionality for this is defined in SaveAndLoad.cpp.
 
-6. Ending Your Turn: 
-If you cannot play a card from your hand, you have to draw a card from the deck.
 
 7. Winning the Game: 
-The first player to get rid of all their cards in hand is the winner.
+The first player who puts all his/her cards in hand is going to be the winner. Make a good decision so that you can win the game !
 
-Please note that the game assumes valid inputs from the user for the seamless gaming experience.
+NOTE: Please note that the game assumes valid inputs from the user for the seamless gaming experience.
 
 ## Non-standard C/C++ libraries
 
