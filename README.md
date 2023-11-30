@@ -35,7 +35,11 @@ This UNO game implementation provides a command-line interface to play the game 
 - Continue playing until a player wins by getting rid of all their cards.
 
 ## Controls (How to play)
-//////////to be filled //////////
+The game is entirely controlled via the command line interface. When it's your turn, you'll be presented with the cards in your hand. Each card will be associated with a number. To play a card, simply type the number associated with that card and press enter.
+
+Special cards like 'skip', 'Draw 2', 'wild', and 'wild draw 4' will be automatically played by the game when drawn.
+
+Please note that the game assumes valid inputs from the user for the seamless gaming experience.
 
 ## License
 
