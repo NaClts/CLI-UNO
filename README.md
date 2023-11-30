@@ -40,25 +40,34 @@ This UNO game implementation provides a command-line interface to play the game 
 - Continue playing until a player wins by getting rid of all their cards.
 
 ## Controls & Instructions (How to play)
-Starting the Game: 
+If you run the game, there are 4 options for you. 
+1. start a new game
+2. Load a game
+3. About this game
+4. Exit the game
+Based on your choice, you can start a new game or load a game if you have previously played this game. Rather than that, you can choose to get brief information about this game or leave this game.
+
+Here comes the Rule of the HKUNO game:
+
+1. Starting the Game: 
 The game starts by dealing a certain number of cards to each player. The remaining deck is placed in the center and the top card is revealed to start the discard pile.
 
-During Your Turn: 
+2. During Your Turn: 
 During your turn, you must match a card from your hand to the card on the top of the discard pile. The match can be based on number, color, or symbol.
 
-Special Cards: 
+3. Special Cards: 
 There are special cards in the game like 'Skip', 'Reverse', 'Draw Two', 'Wild', and 'Wild Draw Four' which have unique effects on the gameplay.
 
-AI Players: 
+4. AI Players: 
 The game features AI players. Their behavior is defined in the AI_requestAI.cpp file.
 
-Saving and Loading Game Progress: 
+5. Saving and Loading Game Progress: 
 You can save and load game progress. The functionality for this is defined in SaveAndLoad.cpp.
 
-Ending Your Turn: 
+6. Ending Your Turn: 
 If you cannot play a card from your hand, you have to draw a card from the deck.
 
-Winning the Game: 
+7. Winning the Game: 
 The first player to get rid of all their cards in hand is the winner.
 
 Please note that the game assumes valid inputs from the user for the seamless gaming experience.
