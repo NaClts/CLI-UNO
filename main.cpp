@@ -189,8 +189,13 @@ int main() {
             startNewGame();
             break;
         case 2:
-		loadGameProgress(loadFile, player, numOfPlayers, currentCard, counter, round);
-            break;
+	    if (loadGameProgress(loadFile, player, numOfPlayers, currentCard, counter, round)) {
+		cout << "Game loaded successfully! Starting the game..." << endl;
+		startNewGame();
+	    } else {
+		cout << "Failed to load the game. Starting a new game instead." << endl;
+	    }
+	    break;
         case 3:
             // Add code for about game
             cout << "UNO Game - About" << endl;
