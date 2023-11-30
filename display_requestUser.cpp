@@ -3,7 +3,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>  // For file input/output
-#include "SaveAndLoad.cpp"  // Include the file where saveGameProgress and loadGameProgress are defined
+#include "SaveAndLoad.cpp"  // For calling SaveGameProgress() and LoadGameProgress()
 #include <cstdlib>  // For calling srand(), rand()
 #include <ctime>    // For calling time()
 #include "selfDefStruct.h"  // For the calling of self-defined structures (UNO, playedUNO, listOfCards)
