@@ -116,7 +116,12 @@ void startNewGame() {
     if(check_col != 'n'){ //if it is not, card effect only for D, R, S
 		switch(check_num){
 			case 'D':
-				Draw2(player[], counter%*numOfPlayers);
+				if(reverse == false){ //when it is not reverse, card should be added to next player(counter++)
+					Draw2(player[], (counter+1)%*numOfPlayers);
+				}
+				else{//when it is reverse, card should be added to next player(counter--)
+					Draw2(player[], (counter-1)%*numOfPlayers);
+				}
 				break;
 			case 'R':
 				reverse = (reverse == false) ? true : false; // when reverse == false, then set true and vice versa
@@ -132,7 +137,12 @@ void startNewGame() {
 				Wild(currentCard);
 				break;
 			case 'D':
-				WildDraw(player[], counter%*numOfPlayers);
+				if(reverse == false){//when it is not reverse, card should be added to next player(counter++)
+					WildDraw(player[], (counter+1)%*numOfPlayers);
+				}
+				else{//when it is reverse, card should be added to next player(counter--)
+					WildDraw(player[], (counter-1)%*numOfPlayers);
+				}
 				break;
 		}
 	}
