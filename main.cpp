@@ -96,7 +96,7 @@ void startNewGame() {
     // If the number of cards holding by a player exceeds 100,
     // => the player can still draw a card,
     // => but a random card will be discarded automatically.
-    bool crowned = false
+    bool crowned = false;
     while (!onePlayerNoCards(player[], *numOfPlayers)) {
         // Ask for input of playing card from user or AI
         if (counter % *numOfPlayers == 0)    // The turn of user
@@ -110,9 +110,9 @@ void startNewGame() {
         ///////////////////////////////////////////
         // (TO BE FILLED) Action after each cards//
         ///////////////////////////////////////////
-	char check_col = currentCard.card.col;
-	char check_num = currentCard.card.num;
-	 // check the color whether it is 'n' or not
+    char check_col = currentCard.card.col;
+    char check_num = currentCard.card.num;
+    // check the color whether it is 'n' or not
     if(check_col != 'n'){ //if it is not, card effect only for D, R, S
 		switch(check_num){
 			case 'D':
@@ -120,6 +120,7 @@ void startNewGame() {
 				break;
 			case 'R':
 				reverse = (reverse == false) ? true : false; // when reverse == false, then set true and vice versa
+				break;
 			case 'S':
 				skip(counter, reverse);
 				break;
