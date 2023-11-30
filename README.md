@@ -70,9 +70,8 @@ The first player who puts all his/her cards in hand is going to be the winner. M
 
 NOTE: Please note that the game assumes valid inputs from the user for the seamless gaming experience.
 
-## Non-standard C/C++ libraries
 
 
 ## Credits
-- UNO game rules and concept by
-- "Contribution" by "Your name"
+- UNO game rules and concept by group#21
+
