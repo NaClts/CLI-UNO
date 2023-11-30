@@ -10,7 +10,8 @@
 #include "AI_requestAI.h" // For calling AI_requestAI()
 #include "card_effect.h" // For calling card_effect functions
 #include "display_requestUser.h" // For calling display_requestUser()
-#include "display_waitingForAI.h"   // For calling display_waitingForAI.h()
+#include "display_waitingForAI.h"   // For calling display_waitingForAI()
+#include "whoWin.h"     // For calling of whoWin()
 
 using namespace std;
 
@@ -61,7 +62,7 @@ int getValidInitialNumOfCards() {
 }
 
 void startNewGame() {
-    int* numOfPlayers
+    int* numOfPlayers;
     getValidNumPlayers(numOfPlayers);
     int initialNumOfCards = getValidInitialNumOfCards();
 
@@ -97,14 +98,14 @@ void startNewGame() {
     // => the player can still draw a card,
     // => but a random card will be discarded automatically.
     bool crowned = false;
-    while (!onePlayerNoCards(player[], *numOfPlayers)) {
+    while (!onePlayerNoCards(player, *numOfPlayers)) {
         // Ask for input of playing card from user or AI
         if (counter % *numOfPlayers == 0)    // The turn of user
-            currentCard = display_requestUser(player[], currentCard, numOfPlayers);    // The card played by player is stored as "currentCard"
+            currentCard = display_requestUser(player, currentCard, *numOfPlayers);    // The card played by player is stored as "currentCard"
         else {
             int AIIndex = counter % *numOfPlayers;    // The turn of AI
-            display_waitingForAI(currentCard, AIIndex, player[0]); // Display which AI is playing and wait for a time delay of 1 second
-            currentCard = AI_requestAI(player[], AIIndex ,currentCard); // The card played by AI is stored as "currentCard"
+            display_waitingForAI(currentCard, AIIndex, player, *numOfPlayers); // Display which AI is playing and wait for a time delay of 1 second
+            currentCard = AI_requestAI(player, AIIndex ,currentCard); // The card played by AI is stored as "currentCard"
 
         } 
         ///////////////////////////////////////////
@@ -117,10 +118,10 @@ void startNewGame() {
 		switch(check_num){
 			case 'D':
 				if(reverse == false){ //when it is not reverse, card should be added to next player(counter++)
-					Draw2(player[], (counter+1)%*numOfPlayers);
+					Draw2(player, (counter+1)%*numOfPlayers);
 				}
 				else{//when it is reverse, card should be added to next player(counter--)
-					Draw2(player[], (counter-1)%*numOfPlayers);
+					Draw2(player, (counter-1)%*numOfPlayers);
 				}
 				break;
 			case 'R':
@@ -138,10 +139,10 @@ void startNewGame() {
 				break;
 			case 'D':
 				if(reverse == false){//when it is not reverse, card should be added to next player(counter++)
-					WildDraw(player[], (counter+1)%*numOfPlayers);
+					WildDraw(player, (counter+1)%*numOfPlayers);
 				}
 				else{//when it is reverse, card should be added to next player(counter--)
-					WildDraw(player[], (counter-1)%*numOfPlayers);
+					WildDraw(player, (counter-1)%*numOfPlayers);
 				}
 				break;
 		}
@@ -153,7 +154,7 @@ void startNewGame() {
             counter++;
        
         // Determine and display who wins while no one played all the cards
-        int winPlayerIndex = whoWin(player[], *numOfPlayers);
+        int winPlayerIndex = whoWin(player, *numOfPlayers);
         if (winPlayerIndex > -1) {
             display_result(winPlayerIndex, round);
             crowned = true;
@@ -161,10 +162,10 @@ void startNewGame() {
         }
         saveGameProgress(saveFile, player, numOfPlayers, currentCard, counter, round);
     }
-
+    int winPlayerIndex = whoWin(player, *numOfPlayers);
     // Determine and display who wins while someone played all the cards
     if (crowned == false){
-        winPlayerIndex = whoWin(player[], *numOfPlayers);
+        winPlayerIndex = whoWin(player, *numOfPlayers);
         display_result(winPlayerIndex, round);
     }
     delete numOfPlayers; 
@@ -203,4 +204,3 @@ int main() {
 
     return 0;
 }
-
