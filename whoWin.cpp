@@ -5,7 +5,7 @@
 
 int whoWin (ListOfCards player[], int numOfPlayer) {
     
-    if onePlayerNoCards (ListOfCards player[], int numOfPlayer) { //if someone run out of cards
+    if ( onePlayerNoCards( player ,  numOfPlayer ) ) { //if someone run out of cards
 
         for (int i = 0; i < numOfPlayer; i++) {
 

@@ -7,4 +7,4 @@
 
 int whoWin(ListOfCards player[], int numOfPlayer);
 
-#endiff
+#endif
