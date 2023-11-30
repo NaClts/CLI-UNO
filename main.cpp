@@ -162,10 +162,10 @@ void startNewGame() {
         }
         saveGameProgress(saveFile, player, numOfPlayers, currentCard, counter, round);
     }
-    int winPlayerIndex = whoWin(player, *numOfPlayers);
+
     // Determine and display who wins while someone played all the cards
     if (crowned == false){
-        winPlayerIndex = whoWin(player, *numOfPlayers);
+        int winPlayerIndex = whoWin(player, *numOfPlayers);
         display_result(winPlayerIndex, round);
     }
     delete numOfPlayers; 
