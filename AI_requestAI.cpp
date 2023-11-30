@@ -23,8 +23,11 @@ playedUNO easyAI(ListOfCards player[], int AIIndex, playedUNO currentCard, bool 
 				break;
 			}
 			if(player[AIIndex].card[i].col == 'n' && found == false){ // when AI found black card and not played yet
-				currnetCard.card == player[AIIndex].card[i]; // put black card
+				currentCard.card = player[AIIndex].card[i]; // put black card
 				pos = i;
+				currentCard.colourToChange = randomSingleUNO(time(NULL)-24234).col;		// Decide which colour to change
+				if (currentCard.colourToChange == 'n')
+					currentCard.colourToChange = 'y';
 				found = true;
 				break;
 			}
