@@ -12,16 +12,16 @@ playedUNO easyAI(ListOfCards player[], int AIIndex, playedUNO currentCard, bool 
 	bool found = false;
 	
 	if(currentCard.card.col != 'n'){ // check the card and when it is not 'n'
-		for (int i = 0; i < 100 ; i++){
+		for (int i = 0; i < player[AIIndex].card.size() ; i++){
 			if (player[AIIndex].card[i].col == currentCard.card.col){ // when the card.col is same as currentCard  
 				currentCard.card = player[AIIndex].card[i]; // change the current card
 				pos = i;
 				found = true;
 				break;
 			}
-			if(!player[AIIndex].card[i].col){ // when there is no card anymore // when the col is empty, there is no card
-				break;
-			}
+//			if(!player[AIIndex].card[i].col){ // when there is no card anymore // when the col is empty, there is no card
+//				break;
+//			}
 			if(player[AIIndex].card[i].col == 'n' && found == false){ // when AI found black card and not played yet
 				currentCard.card = player[AIIndex].card[i]; // put black card
 				pos = i;
@@ -33,53 +33,37 @@ playedUNO easyAI(ListOfCards player[], int AIIndex, playedUNO currentCard, bool 
 			}
 		}
 		if(!found == true){ // if no match card with same color, check for the same number
-			for (int i = 0; i < 100 ; i++){
+			for (int i = 0; i < player[AIIndex].card.size() ; i++){
 				if (player[AIIndex].card[i].num == currentCard.card.num){ // when the card.num is same as currentCard  
 					currentCard.card = player[AIIndex].card[i]; // change the current card
 					pos = i;
 					found = true;
 					break;
 				}
-				if(!player[AIIndex].card[i].col){ // when there is no more card
-					break;
-				}
 			}
 		}
 		if(found == true){
-			for (int j = pos; j < 99 ; j++){ // only for when the player put the card
+			for (int j = pos; j < (player[AIIndex].card.size()-1) ; j++){ // only for when the player put the card
 				player[AIIndex].card[j] = player[AIIndex].card[j + 1]; // remove the card and move the cards to the front
 			}
-			player[AIIndex].card[99].col = '\0';
-			player[AIIndex].card[99].num = '\0';
+			player[AIIndex].card.pop_back();
 		}
 	}
 	else{ // decision making after the wild card, we have to check colorTochange not the card color
-		for (int i = 0; i < 100 ; i++){
+		for (int i = 0; i < player[AIIndex].card.size() ; i++){
 			if (player[AIIndex].card[i].col == currentCard.colourToChange){ // when the card.col is same as colorTochange 
 				currentCard.card = player[AIIndex].card[i]; // change the current card
 				pos = i;
 				found = true;
 				break;
 			}
-			if(!player[AIIndex].card[i].col){ // when there is no card anymore
-				break;
-			}
 		} // in this case we dont need to check the num of card. cuz we have to put the correspond color card.
 		if(found == true){ // when the AI put the card, it should be removed from the hand
-			for (int j = pos; j < 99 ; j++){ // only for when the player put the card
+			for (int j = pos; j < (player[AIIndex].card.size()-1) ; j++){ // only for when the player put the card
 				player[AIIndex].card[j] = player[AIIndex].card[j + 1]; // remove the card and move the cards to the front
 			}
-			player[AIIndex].card[99].col = '\0';
-			player[AIIndex].card[99].num = '\0';
+			player[AIIndex].card.pop_back();
 		}
-	}
-
-	// Put out a draw 4 card / wild card if necessary
-	
-	// Count the number of cards
-	int length = 0;
-	while ( player[AIIndex].card[length].col ) {
-		length++;
 	}
 
 	// Draw a card if there is no card
@@ -87,20 +71,8 @@ playedUNO easyAI(ListOfCards player[], int AIIndex, playedUNO currentCard, bool 
 		// Draw a new card
         UNO newDraw = randomSingleUNO(time(NULL) - 246810);
         
-        if ( length == 100 ) {
-            // Replace a random card if the total card number = 100
-            srand(time(NULL)-12345678);
-            player[0].card[ rand() % 100 ] = newDraw;
-        }
-        else {
-            // Add a new random card if the total card number < 100
-            for ( int k = 0 ; k < 100 ; k++ ) {
-                if ( !player[AIIndex].card[k].col ) {
-                    player[AIIndex].card[k] = newDraw;
-                    break;
-                }
-            }
-        }
+        // Add a new random card
+        player[0].card.push_back(newDraw);
     }
 	
 	// Tell the main() if the acrd is newly played
@@ -113,7 +85,7 @@ playedUNO easyAI(ListOfCards player[], int AIIndex, playedUNO currentCard, bool 
 
 	return currentCard;
 }
-	
+
 	
 //number of players = numOfPlayer = array size of player[]
 

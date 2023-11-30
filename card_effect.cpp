@@ -18,13 +18,10 @@ void Draw2(ListOfCards player[], int AIIndex){ // adding 2 cards to the player
 	UNO add_card1, add_card2;
 	add_card1 = randomSingleUNO(time(NULL)+345); // random 2 cards from the deck
 	add_card2 = randomSingleUNO(time(NULL)+685);
-	for(int i = 0; i < 100 ; i++){ // add the random card at the back of the array
-		if( !player[AIIndex].card[i].col ){
-			player[AIIndex].card[i] = add_card1;
-			player[AIIndex].card[i+1] = add_card2;
-			break;
-		}
-	}
+	
+	// add the random card at the back of the array
+	player[AIIndex].card.push_back(add_card1);
+	player[AIIndex].card.push_back(add_card2);
 }
 
 //void Wild(playedUNO &currentCard){ //change the color 
@@ -54,13 +51,10 @@ void WildDraw(ListOfCards player[], int AIIndex){// adding 4 cards to the player
 	add_card2 = randomSingleUNO(time(NULL)+4636);
 	add_card3 = randomSingleUNO(time(NULL)+4637);
 	add_card4 = randomSingleUNO(time(NULL)+4638);
-	for(int i = 0; i < 100 ; i++){ // add the random card at the back of the array
-		if( !player[AIIndex].card[i].col ){
-			player[AIIndex].card[i] = add_card1;
-			player[AIIndex].card[i+1] = add_card2;
-			player[AIIndex].card[i+2] = add_card3;
-			player[AIIndex].card[i+3] = add_card4;
-			break;
-		}
-	}
+
+	// add the random card at the back of the array
+	player[AIIndex].card.push_back(add_card1);
+	player[AIIndex].card.push_back(add_card2);
+	player[AIIndex].card.push_back(add_card3);
+	player[AIIndex].card.push_back(add_card4);
 }

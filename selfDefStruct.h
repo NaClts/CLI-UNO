@@ -4,6 +4,9 @@
 #ifndef UNO_H
 #define UNO_H
 
+#include <vector>
+using namespace std;
+
 // Defining new type of variable "UNO"
 // For example,
 // ( UNO.col == 'n' && UNO.num == 'D' ) is Draw 4
@@ -15,7 +18,7 @@ struct UNO {
 
 // Define a structure to store all the cards of a player
 struct ListOfCards {
-    UNO card[100];
+    vector<UNO> card;
 };
 
 // Stores the latest played card as "currentCard"

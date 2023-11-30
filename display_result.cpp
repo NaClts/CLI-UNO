@@ -16,8 +16,6 @@ void display_result(ListOfCards player[], int numOfPlayer) {
 
     // Display the final state of the cards
     for (int i = 0; i < numOfPlayer; i++) {
-        std::cout << "Player " << i << " has " << getNumOfCards(player[i]) << " cards left.\n";
+        std::cout << "Player " << i << " has " << player[i].card.size() << " cards left.\n";
     }
 }
-
-

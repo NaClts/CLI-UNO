@@ -7,29 +7,25 @@
 #include "display_waitingForAI.h"    // Allow other programs to call this function via the header file
 using namespace std;
 
-void display_waitingForAI(playedUNO currentCard, int AIIndex, ListOfCards user[], int numOfPlayers) {
+void display_waitingForAI(playedUNO currentCard, int AIIndex, ListOfCards player[], int numOfPlayers) {
 
     system("clear");
 
     // DEBUG USE
     cout << "DEBUG:" << endl;
-    for ( int k = 0 ; k < numOfPlayers ; k++ ) {
-        cout << k << ": ";
-        for ( int j = 0 ; user[k].card[j].col ; j++ ) {
-            cout << user[k].card[j].col << user[k].card[j].num << " ";
+    for ( int i = 0 ; i < numOfPlayers ; i++ ) {
+        cout << i << ": ";
+        for ( int j = 0 ; j < player[i].card.size() ; j++ ) {
+            cout << player[i].card[j].col << player[i].card[j].num << " ";
         }
         cout << endl;
     }
     cout << endl;
 
     int *numOfCards = new int[numOfPlayers];
-	for ( int j = 0 ; j < numOfPlayers ; j++ ) {
+	for ( int i = 0 ; i < numOfPlayers ; i++ ) {
         // Count the number of cards
-	    int length = 0;
-	    while ( user[j].card[length].col ) {
-	    	length++;
-	    }
-        numOfCards[j] = length;
+        numOfCards[i] = player[i].card.size();
     }
 
     //1 Print the number of AI and which AI is playing on the top 
@@ -88,26 +84,40 @@ void display_waitingForAI(playedUNO currentCard, int AIIndex, ListOfCards user[]
     cout << "(R = Reverse)" << endl;
     cout << "(S = Skip)" << endl;
 
-    //4 Print the cards that are held by the player currently
+    //4 Print the cards that are held by the player currently (Organized by colours)
     cout << "Your cards :" << endl;
-    int n = 0;  // Total no. of cards
-    int i = 0;
-    UNO cardRead = user[0].card[i];
-    while ( i < 100 ) {
-        if ( cardRead.col ) {
-            if ( cardRead.col == 'b')
-                cout << "\033[1;34m";
-            else if ( cardRead.col == 'g')
-                cout << "\033[1;32m";
-            else if ( cardRead.col == 'r')
-                cout << "\033[1;31m";
-            else if ( cardRead.col == 'y')
-                cout << "\033[1;33m";
-            cout << user[0].card[i].num << " " << "\033[0m" ;
-            n++;
+    for ( int i = 0 ; i < player[0].card.size() ; i++ ) {   // Pint blue
+        cout << "\033[1;34m";
+        if ( player[0].card[i].col == 'b') {
+            cout << player[0].card[i].num << " ";
         }
-        i++;
-        cardRead = user[0].card[i];
+        cout << "\033[0m";
+    }
+    for ( int i = 0 ; i < player[0].card.size() ; i++ ) {   // Pint green
+        cout << "\033[1;32m";
+        if ( player[0].card[i].col == 'g') {
+            cout << player[0].card[i].num << " ";
+        }
+        cout << "\033[0m";
+    }    
+    for ( int i = 0 ; i < player[0].card.size() ; i++ ) {   // Pint red
+        cout << "\033[1;31m";
+        if ( player[0].card[i].col == 'r') {
+            cout << player[0].card[i].num << " ";
+        }
+        cout << "\033[0m";
+    }
+    for ( int i = 0 ; i < player[0].card.size() ; i++ ) {   // Pint yellow
+        cout << "\033[1;33m";
+        if ( player[0].card[i].col == 'y') {
+            cout << player[0].card[i].num << " ";
+        }
+        cout << "\033[0m";
+    }
+    for ( int i = 0 ; i < player[0].card.size() ; i++ ) {   // Pint no colour
+        if ( player[0].card[i].col == 'n') {
+            cout << player[0].card[i].num << " ";
+        }
     }
     cout << endl;
 

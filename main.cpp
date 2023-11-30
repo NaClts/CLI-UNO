@@ -46,14 +46,14 @@ int getValidInitialNumOfCards() {
     int initialNumOfCards;
 
     do {
-        cout << "Enter the initial hand size (1-49): ";
+        cout << "Enter the initial hand size (>1): ";
         cin >> initialNumOfCards;
 
-        if (initialNumOfCards > 0 && initialNumOfCards < 50 ) {
+        if (initialNumOfCards > 1) {
             break;  // Valid input, exit the loop
         }
         else {
-            cout << "Invalid input. Please enter a number between 1 and 49." << endl;
+            cout << "Invalid input. Please enter a number greater than 1." << endl;
         }
     } while (true);
 
@@ -70,18 +70,19 @@ void startNewGame() {
     // Dynamic array storing cards of players
     ListOfCards *player = new ListOfCards[numOfPlayers];
 
-    // Empty the array
-    for (int i = 0; i < numOfPlayers; i++) {
-        for (int j = 0; j < 100; j++) {
-            player[i].card[j].col = '\0';
-            player[i].card[j].num = '\0';
-        }
-    }
+//    // Empty the array
+//    for (int i = 0; i < numOfPlayers; i++) {
+//        for (int j = 0; j < 100; j++) {
+//            player[i].card[j].col = '\0';
+//            player[i].card[j].num = '\0';
+//        }
+//    }
 
     // Randomly assign initial UNO cards to all players
     for (int i = 0; i < numOfPlayers; i++) {
-        for (int j = 0; j < initialNumOfCards; j++)
-            player[i].card[j] = randomSingleUNO(time(NULL) + i*100 + j);
+        for (int j = 0; j < initialNumOfCards; j++) {
+            player[i].card.push_back( randomSingleUNO(time(NULL) + i*65536 + j) );
+        }
     }
 
     bool reverse = false;   // For reverse card - true if reverse card is played
@@ -135,9 +136,11 @@ void startNewGame() {
 	        		case 'D':
 	        			if(reverse == false){ //when it is not reverse, card should be added to next player(counter++)
 	        				Draw2(player, (counter+1) % numOfPlayers);
+                            skip(counter, reverse);
 	        			}
 	        			else{//when it is reverse, card should be added to next player(counter--)
 	        				Draw2(player, (counter-1) % numOfPlayers);
+                            skip(counter, reverse);
 	        			}
 	        			break;
 	        		case 'R':
@@ -156,9 +159,11 @@ void startNewGame() {
 	        		case 'D':
 	        			if(reverse == false){//when it is not reverse, card should be added to next player(counter++)
 	        				WildDraw(player, (counter+1) % numOfPlayers);
+                            skip(counter, reverse);
 	        			}
 	        			else{//when it is reverse, card should be added to next player(counter--)
 	        				WildDraw(player, (counter-1) % numOfPlayers);
+                            skip(counter, reverse);
 	        			}
 	        			break;
 	        	}
@@ -171,13 +176,14 @@ void startNewGame() {
         else
             counter++;
         newOrNot = false;
-        // Determine and display who wins while no one played all the cards
-        int winPlayerIndex = whoWin(player, numOfPlayers);
-        if (winPlayerIndex > -1) {
-            display_result(player, numOfPlayers);
-            crowned = true;
-            break;
-        }
+    
+//        // Determine and display who wins while no one played all the cards
+//        int winPlayerIndex = whoWin(player, numOfPlayers);
+//        if (winPlayerIndex > -1) {
+//            display_result(player, numOfPlayers);
+//            crowned = true;
+//            break;
+//        }
         // Save game progress
         //bool saveAndExit = saveGameProgress(player, *numOfPlayers, currentCard, counter, round);
         //if (saveAndExit) {

@@ -11,29 +11,25 @@
 #include "display_requestUser.h"    // Allow other programs to call this function via the header file
 using namespace std;
 
-playedUNO display_requestUser( ListOfCards user[] , playedUNO currentCard , int numOfPlayer , bool &newOrNot ) {
+playedUNO display_requestUser( ListOfCards player[] , playedUNO currentCard , int numOfPlayer , bool &newOrNot ) {
 
     system("clear");
 
     // DEBUG USE
     cout << "DEBUG:" << endl;
-    for ( int k = 0 ; k < numOfPlayer ; k++ ) {
-        cout << k << ": ";
-        for ( int j = 0 ; user[k].card[j].col ; j++ ) {
-            cout << user[k].card[j].col << user[k].card[j].num << " ";
+    for ( int i = 0 ; i < numOfPlayer ; i++ ) {
+        cout << i << ": ";
+        for ( int j = 0 ; j < player[i].card.size() ; j++ ) {
+            cout << player[i].card[j].col << player[i].card[j].num << " ";
         }
         cout << endl;
     }
     cout << endl;
 
     int *numOfCards = new int[numOfPlayer];
-	for ( int j = 0 ; j < numOfPlayer ; j++ ) {
+	for ( int i = 0 ; i < numOfPlayer ; i++ ) {
         // Count the number of cards
-	    int length = 0;
-	    while ( user[j].card[length].col ) {
-	    	length++;
-	    }
-        numOfCards[j] = length;
+        numOfCards[i] = player[i].card.size();
     }
 
     //1 Print the number of AI and their numbers of cards on the top 
@@ -89,44 +85,59 @@ playedUNO display_requestUser( ListOfCards user[] , playedUNO currentCard , int 
     cout << "(R = Reverse)" << endl;
     cout << "(S = Skip)" << endl;
 
-    //4 Print the cards that are held by the player currently
+    //4 Print the cards that are held by the player currently (Organized by colours)
     cout << "Your cards :" << endl;
-    int n = 0;  // Total no. of cards
-    int i = 0;
-    UNO cardRead = user[0].card[i];
-    while ( i < 100 ) {
-        if ( cardRead.col ) {
-            if ( cardRead.col == 'b')
-                cout << "\033[1;34m";
-            else if ( cardRead.col == 'g')
-                cout << "\033[1;32m";
-            else if ( cardRead.col == 'r')
-                cout << "\033[1;31m";
-            else if ( cardRead.col == 'y')
-                cout << "\033[1;33m";
-            cout << user[0].card[i].num << " " << "\033[0m" ;
-            n++;
+    for ( int i = 0 ; i < player[0].card.size() ; i++ ) {   // Pint blue
+        cout << "\033[1;34m";
+        if ( player[0].card[i].col == 'b') {
+            cout << player[0].card[i].num << " ";
         }
-        i++;
-        cardRead = user[0].card[i];
+        cout << "\033[0m";
+    }
+    for ( int i = 0 ; i < player[0].card.size() ; i++ ) {   // Pint green
+        cout << "\033[1;32m";
+        if ( player[0].card[i].col == 'g') {
+            cout << player[0].card[i].num << " ";
+        }
+        cout << "\033[0m";
+    }    
+    for ( int i = 0 ; i < player[0].card.size() ; i++ ) {   // Pint red
+        cout << "\033[1;31m";
+        if ( player[0].card[i].col == 'r') {
+            cout << player[0].card[i].num << " ";
+        }
+        cout << "\033[0m";
+    }
+    for ( int i = 0 ; i < player[0].card.size() ; i++ ) {   // Pint yellow
+        cout << "\033[1;33m";
+        if ( player[0].card[i].col == 'y') {
+            cout << player[0].card[i].num << " ";
+        }
+        cout << "\033[0m";
+    }
+    for ( int i = 0 ; i < player[0].card.size() ; i++ ) {   // Pint no colour
+        if ( player[0].card[i].col == 'n') {
+            cout << player[0].card[i].num << " ";
+        }
     }
     cout << endl << endl;
 
     cout << "Please enter the colour of the card following by the NUMBER/ACTION" << endl;
     cout << "For example: yD (Yellow Draw 2), nW (Wild), nD (Draw 4)" << endl;
-    cout << "If you want to draw extra card, enter DRAW" << endl;
+    cout << "If you want to draw extra card, enter 'draw'" << endl;
     cout << "If you want to save and exit the game, enter 'wq'" << endl;
 
     //5 Checking whether the card to be inputed by player is valid
-    //    If not, the user will be asked again
+    //    If not, the player will be asked again
     bool valid, cardExist, draw = false;
-    string userInput;
-    char col, num, colToChange;
+    string playerInput;
+    char col, num, colToChange;     // Parameters of the returning
+    int pos = 0;  // Position of card to be played
     while ( !valid ) {
         cout << "Which card would you like to play? ";
-        cin >> userInput;
+        cin >> playerInput;
 
-//        if (userInput == "wq") {
+//        if (playerInput == "wq") {
 //            // Set the flag to indicate that 'wq' has been played
 //            saveAndExit = true;
 //            valid = true;
@@ -134,36 +145,34 @@ playedUNO display_requestUser( ListOfCards user[] , playedUNO currentCard , int 
 //        }
 
 
-        //EXCEPTION: If user hopes to draw a new card, the loop is exited
-        if ( userInput == "DRAW" ) {
+        //EXCEPTION: If player hopes to draw a new card, the loop is exited
+        if ( playerInput == "draw" ) {
             draw = true;
             break;
         }
         
-        col = userInput.c_str()[0];
-        num = userInput.c_str()[1];
-        i = 0;  // Defined earlier
-        cardRead = user[0].card[i];     // Defined earlier
+        col = playerInput.c_str()[0];
+        num = playerInput.c_str()[1];
 
-        //5.1 Check whether the card is in the user card list
+        //5.1 Check whether the card is in the player card list
         cardExist = false;
-        while ( i < 100 && !cardExist) {
-            if ( col == cardRead.col && num == cardRead.num )
+        for ( int i = 0 ; i < player[0].card.size() ; i++ ) {
+            if ( col == player[0].card[i].col && num == player[0].card[i].num ) {
                 cardExist = true;
-            else
-                i++;
-                cardRead = user[0].card[i];
+                pos = i;
+                break;
+            }
         }
 
         //5.2 If the card is found...
         if ( cardExist ) {
-            //5.2.1 If the card is of no colour, ask for the colour to change
+            //5.2.1 If the card is of black colour, ask for the colour to change
             if ( col == 'n' ) {
                 bool colourValid = false;
-                while ( !colourValid ) {    // Ask the colour to change until user gives a valid input
+                while ( !colourValid ) {    // Ask the colour to change until player gives a valid input
                     cout << "Which colour would you like to change (b/g/r/y)? ";
-                    cin >> userInput;
-                    colToChange = userInput.c_str()[0];
+                    cin >> playerInput;
+                    colToChange = playerInput.c_str()[0];
                     if ( colToChange == 'b' || colToChange == 'g' || colToChange == 'r' || colToChange == 'y' ) {
                         colourValid = true;
                         valid = true;
@@ -200,32 +209,18 @@ playedUNO display_requestUser( ListOfCards user[] , playedUNO currentCard , int 
         // Draw a new card
         UNO newDraw = randomSingleUNO(time(NULL) - 246810);
         
-        if ( n == 100 ) {
-            // Replace a random card if the total card number = 100
-            srand(time(NULL)-12345678);
-            user[0].card[ rand() % 100 ] = newDraw;
-        }
-        else {
-            // Add a new random card if the total card number < 100
-            for ( int k = 0 ; k < 100 ; k++ ) {
-                if ( !user[0].card[k].col ) {
-                    user[0].card[k] = newDraw;
-                    break;
-                }
-            }
-        }
+        // Add a new random card
+        player[0].card.push_back(newDraw);
     }
     else {
         newOrNot = true;
         // Put the cards to the front and replace the played card
-        while ( user[0].card[i+1].col ) {
-            user[0].card[i] = user[0].card[i+1];
-            i++;
+        for ( int i = pos ; i < ( player[0].card.size() - 1 ) ; i++ ) {
+            player[0].card[i] = player[0].card[i+1];
         }
 
         // Delete the newly played card from the card list
-        user[0].card[i].col = '\0';
-        user[0].card[i].num = '\0';
+        player[0].card.pop_back();
         
         // Returning the newly played card
         newCard.card.col = col;
