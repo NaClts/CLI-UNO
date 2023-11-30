@@ -2,8 +2,6 @@
 
 #include <iostream>
 #include <string>
-#include <fstream>  // For file input/output
-//#include "SaveAndLoad.cpp"  // For calling SaveGameProgress() and LoadGameProgress()
 #include <cstdlib>  // For calling srand(), rand()
 #include <ctime>    // For calling time()
 #include "selfDefStruct.h"  // For the calling of self-defined structures (UNO, playedUNO, listOfCards)
@@ -11,7 +9,7 @@
 #include "display_requestUser.h"    // Allow other programs to call this function via the header file
 using namespace std;
 
-playedUNO display_requestUser( ListOfCards player[] , playedUNO currentCard , int numOfPlayer , bool &newOrNot ) {
+playedUNO display_requestUser( ListOfCards player[] , playedUNO currentCard , int numOfPlayer , bool &newOrNot , bool &save ) {
 
     system("clear");
 
@@ -137,12 +135,12 @@ playedUNO display_requestUser( ListOfCards player[] , playedUNO currentCard , in
         cout << "Which card would you like to play? ";
         cin >> playerInput;
 
-//        if (playerInput == "wq") {
-//            // Set the flag to indicate that 'wq' has been played
-//            saveAndExit = true;
-//            valid = true;
-//            return playedUNO();  // Return an empty playedUNO object
-//        }
+        if (playerInput == "wq") {
+            // Set the flag to indicate that 'wq' has been played
+            save = true;
+            delete [] numOfCards;
+            return currentCard;
+        }
 
 
         //EXCEPTION: If player hopes to draw a new card, the loop is exited

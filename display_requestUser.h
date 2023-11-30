@@ -5,6 +5,6 @@
 
 #include "selfDefStruct.h"  // For the calling of self-defined structures (UNO, playedUNO, listOfCards)
 
-playedUNO display_requestUser( ListOfCards user[] , playedUNO currentCard , int numOfPlayer , bool &newOrNot );
+playedUNO display_requestUser( ListOfCards user[] , playedUNO currentCard , int numOfPlayer , bool &newOrNot , bool &save );
 
 #endif

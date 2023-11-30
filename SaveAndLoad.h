@@ -5,7 +5,8 @@
 #include "selfDefStruct.h"
 using namespace std;
 
-void saveGameProgress(ofstream& saveFile, ListOfCards player[], int numOfPlayers, playedUNO currentCard, int counter, int round);
-void loadGameProgress(ifstream& loadFile, ListOfCards player[], int& numOfPlayers, playedUNO& currentCard, int& counter, int& round);
+void saveGameProgress(ListOfCards player[], int numOfPlayers, playedUNO currentCard, int counter, int round, bool reverse);
+void loadGameProgress(ListOfCards player[], int& numOfPlayers, playedUNO& currentCard, int& counter, int& round, bool &reverse);
+void loadGameSize(int &numOfPlayers);
 
-#endif 
+#endif
