@@ -27,18 +27,16 @@ void displayWelcomeScreen() {
     cout << "4. Exit" << endl;
 }
 
-void getValidNumPlayers(int*& numPlayers) {
-    numPlayers = new int;
-
+void getValidNumPlayers(int &numPlayers) {
     do {
-        cout << "Enter the number of players (2-10): ";
-        cin >> *numPlayers;
+        cout << "Enter the number of players (>1): ";
+        cin >> numPlayers;
 
-        if (*numPlayers >= 2 && *numPlayers <= 10) {
+        if (numPlayers >= 2) {
             break;  // Valid input, exit the loop
         }
         else {
-            cout << "Invalid input. Please enter a number between 2 and 10." << endl;
+            cout << "Invalid input. Please enter a number greater than 1." << endl;
         }
     } while (true);
 
@@ -63,17 +61,17 @@ int getValidInitialNumOfCards() {
 }
 
 void startNewGame() {
-    int* numOfPlayers;
+    int numOfPlayers;
     getValidNumPlayers(numOfPlayers);
     int initialNumOfCards = getValidInitialNumOfCards();
 
-    cout << "\nNew game started with " << *numOfPlayers << " players and initial hand size of " << initialNumOfCards << "." << endl;
+    cout << "\nNew game started with " << numOfPlayers << " players and initial hand size of " << initialNumOfCards << "." << endl;
 
-    // Maximum number of players is 10
-    ListOfCards player[10];
+    // Dynamic array storing cards of players
+    ListOfCards *player = new ListOfCards[numOfPlayers];
 
     // Empty the array
-    for (int i = 0; i < *numOfPlayers; i++) {
+    for (int i = 0; i < numOfPlayers; i++) {
         for (int j = 0; j < 100; j++) {
             player[i].card[j].col = '\0';
             player[i].card[j].num = '\0';
@@ -81,13 +79,13 @@ void startNewGame() {
     }
 
     // Randomly assign initial UNO cards to all players
-    for (int i = 0; i < *numOfPlayers; i++) {
+    for (int i = 0; i < numOfPlayers; i++) {
         for (int j = 0; j < initialNumOfCards; j++)
             player[i].card[j] = randomSingleUNO(time(NULL) + i*100 + j);
     }
 
     bool reverse = false;   // For reverse card - true if reverse card is played
-    int counter = *numOfPlayers * 65536;        // The remainder of counter / numOfPlayers telling which player is going to play
+    int counter = numOfPlayers * 65536;        // The remainder of counter / numOfPlayers telling which player is going to play
     int round = 0;          // For the leaderboard
 
     playedUNO currentCard;
@@ -108,19 +106,19 @@ void startNewGame() {
     // => but a random card will be discarded automatically.
     bool crowned = false;
     bool newOrNot = false; // Whether the played card / discard is newly played, then the program can determine whether it needs to execute the card action
-    while (!onePlayerNoCards(player, *numOfPlayers)) {
+    while (!onePlayerNoCards(player, numOfPlayers)) {
         
         // Prevent the counter from reaching zero
-        if ( counter <= *numOfPlayers ) {
-            counter += *numOfPlayers * 65536;
+        if ( counter <= numOfPlayers ) {
+            counter += numOfPlayers * 65536;
         }
         
         // Ask for input of playing card from user or AI
-        if ( counter % *numOfPlayers == 0)    // The turn of user
-            currentCard = display_requestUser(player, currentCard, *numOfPlayers, newOrNot);    // The card played by player is stored as "currentCard"
+        if ( counter % numOfPlayers == 0 )    // The turn of user
+            currentCard = display_requestUser(player, currentCard, numOfPlayers, newOrNot);    // The card played by player is stored as "currentCard"
         else {
-            int AIIndex = counter % *numOfPlayers;    // The turn of AI
-            display_waitingForAI(currentCard, AIIndex, player, *numOfPlayers); // Display which AI is playing and wait for a time delay of 1 second
+            int AIIndex = counter % numOfPlayers;    // The turn of AI
+            display_waitingForAI(currentCard, AIIndex, player, numOfPlayers); // Display which AI is playing and wait for a time delay of 1 second
             currentCard = AI_requestAI(player, AIIndex ,currentCard, newOrNot); // The card played by AI is stored as "currentCard"
 
         } 
@@ -136,10 +134,10 @@ void startNewGame() {
 	        	switch(check_num){
 	        		case 'D':
 	        			if(reverse == false){ //when it is not reverse, card should be added to next player(counter++)
-	        				Draw2(player, (counter+1) % *numOfPlayers);
+	        				Draw2(player, (counter+1) % numOfPlayers);
 	        			}
 	        			else{//when it is reverse, card should be added to next player(counter--)
-	        				Draw2(player, (counter-1) %*numOfPlayers);
+	        				Draw2(player, (counter-1) % numOfPlayers);
 	        			}
 	        			break;
 	        		case 'R':
@@ -157,10 +155,10 @@ void startNewGame() {
 	        		//	break;
 	        		case 'D':
 	        			if(reverse == false){//when it is not reverse, card should be added to next player(counter++)
-	        				WildDraw(player, (counter+1) % *numOfPlayers);
+	        				WildDraw(player, (counter+1) % numOfPlayers);
 	        			}
 	        			else{//when it is reverse, card should be added to next player(counter--)
-	        				WildDraw(player, (counter-1) % *numOfPlayers);
+	        				WildDraw(player, (counter-1) % numOfPlayers);
 	        			}
 	        			break;
 	        	}
@@ -174,9 +172,9 @@ void startNewGame() {
             counter++;
         newOrNot = false;
         // Determine and display who wins while no one played all the cards
-        int winPlayerIndex = whoWin(player, *numOfPlayers);
+        int winPlayerIndex = whoWin(player, numOfPlayers);
         if (winPlayerIndex > -1) {
-            display_result(player, *numOfPlayers);
+            display_result(player, numOfPlayers);
             crowned = true;
             break;
         }
@@ -190,10 +188,10 @@ void startNewGame() {
 
     // Determine and display who wins while someone played all the cards
     if (crowned == false){
-        int winPlayerIndex = whoWin(player, *numOfPlayers);
-        display_result(player, *numOfPlayers);
+        int winPlayerIndex = whoWin(player, numOfPlayers);
+        display_result(player, numOfPlayers);
     }
-    delete numOfPlayers; 
+    delete [] player;
 }
 
 int main() {
