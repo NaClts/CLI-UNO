@@ -184,8 +184,7 @@ int main() {
             startNewGame();
             break;
         case 2:
-            // Add code for loading game
-            cout << "Loading game..." << endl;
+		loadGameProgress(loadFile, player, numOfPlayers, currentCard, counter, round);
             break;
         case 3:
             // Add code for about game
