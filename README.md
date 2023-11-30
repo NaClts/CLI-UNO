@@ -3,6 +3,7 @@
 #Team members
 (name (UID)in alphabetical order)
 -Baek Seunghyeon (3035821659)
+-Fan Zihan (3035948471)
 -Please add your info here
 
 ## Description
