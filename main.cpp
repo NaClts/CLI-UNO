@@ -216,8 +216,18 @@ int main() {
 	    //}
 	    //break;
         case 3:
-            // Add code for about game
-            cout << "UNO Game - About" << endl;
+	    cout << "HKUNO - Gameplay Overview" << endl;
+            cout << "HKUNO brings the classic UNO card game to life through a text-based interface. Challenge computer opponents in a thrilling card-matching adventure." << endl;
+            cout << "\nHow to Play:" << endl;
+            cout << "1. Start by specifying the number of computer opponents and initial cards for each player." << endl;
+            cout << "2. Match your cards with the top card on the discard pile by number, color, or symbol during your turn." << endl;
+            cout << "3. Special action cards, including 'Skip,' 'Reverse,' 'Draw Two,' 'Wild,' and 'Wild Draw Four,' introduce strategic twists." << endl;
+            cout << "4. AI players follow predefined behaviors outlined in AI_requestAI.cpp." << endl;
+            cout << "5. Save and load your game progress seamlessly with SaveAndLoad.cpp." << endl;
+            cout << "6. Draw a card if you cannot play during your turn." << endl;
+            cout << "7. The first player to empty their hand emerges as the winner." << endl;
+            cout << "\nNote: Assume valid user inputs for a smooth gaming experience." << endl;
+            cout << "\nEnjoy the HKUNO experience and may you emerge as the UNO champion!" << endl;
             break;
         case 4:
             cout << "Exiting the game. Goodbye!" << endl;
