@@ -111,7 +111,7 @@ void startNewGame() {
     while (!onePlayerNoCards(player, numOfPlayers)) {
 
         cout << currentCard.card.col << currentCard.card.num << endl;
-        sleep(1
+        sleep(1);
 
         // Prevent the counter from reaching zero
         if ( counter <= numOfPlayers ) {
