@@ -5,6 +5,7 @@ ENGG1340 / COMP 2113 Group Project 2023/2024 - Group #21
 ## Team members(name (UID)in alphabetical order)
 - Baek Seunghyeon (3035821659)
 - Fan Zihan (3035948471)
+- Fu Wenqi (3036098053)
 - Wei Jianfeng (3036094899)
 - Tong Cheuk Yin (3036068503)
 
