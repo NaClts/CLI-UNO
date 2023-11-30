@@ -119,7 +119,7 @@ void startNewGame() {
 				Draw2(player[], counter%*numOfPlayers);
 				break;
 			case 'R':
-				reverse = (reverse == false) ? true : false;
+				reverse = (reverse == false) ? true : false; // when reverse == false, then set true and vice versa
 			case 'S':
 				skip(counter, reverse);
 				break;
