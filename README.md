@@ -14,7 +14,7 @@ UNO is a classic card game that is played with a specially printed deck. The obj
 
 This UNO game implementation provides a command-line interface to play the game against computer opponents.
 
-**## Features**
+## Features
 - Play against computer opponents.
 - Interactive command-line interface.
 - Special action cards: Draw 2, Reverse, Skip, and Wild cards(Wild and Wild Draw 4).
