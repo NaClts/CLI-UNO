@@ -92,6 +92,7 @@ playedUNO display_requestUser( ListOfCards user[] , playedUNO currentCard , int 
     cout << "Please enter the colour of the card following by the NUMBER/ACTION" << endl;
     cout << "For example: yD (Yellow Draw 2), nW (Wild), nD (Draw 4)" << endl;
     cout << "If you want to draw extra card, enter DRAW" << endl;
+    cout << "If you want to save and exit the game, enter 'wq'" << endl；
 
     //5 Checking whether the card to be inputed by player is valid
     //    If not, the user will be asked again
