@@ -13,16 +13,16 @@ playedUNO display_requestUser( ListOfCards player[] , playedUNO currentCard , in
 
     system("clear");
 
-    // DEBUG USE
-    cout << "DEBUG:" << endl;
-    for ( int i = 0 ; i < numOfPlayer ; i++ ) {
-        cout << i << ": ";
-        for ( int j = 0 ; j < player[i].card.size() ; j++ ) {
-            cout << player[i].card[j].col << player[i].card[j].num << " ";
-        }
-        cout << endl;
-    }
-    cout << endl;
+//    // DEBUG USE
+//    cout << "DEBUG:" << endl;
+//    for ( int i = 0 ; i < numOfPlayer ; i++ ) {
+//        cout << i << ": ";
+//        for ( int j = 0 ; j < player[i].card.size() ; j++ ) {
+//            cout << player[i].card[j].col << player[i].card[j].num << " ";
+//        }
+//        cout << endl;
+//    }
+//    cout << endl;
 
     int *numOfCards = new int[numOfPlayer];
 	for ( int i = 0 ; i < numOfPlayer ; i++ ) {
