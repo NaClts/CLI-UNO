@@ -2,7 +2,7 @@
 # /////////// Welcome to HKUNO ///////////
 # //////////////////////////////////////////////
 ENGG1340 / COMP 2113 Group Project 2023/2024 - Group #21
-## Team members(name (UID)in alphabetical order)
+## Team members
 - Baek Seunghyeon (3035821659)
 - Fan Zihan (3035948471)
 - Fu Wenqi (3036098053)
@@ -16,12 +16,12 @@ This UNO game implementation provides a command-line interface to play the game 
 
 ## Features
 - Play against computer opponents.
-- Interactive command-line interface. //change if this is not true
+- Interactive command-line interface.
 - Special action cards: Draw 2, Reverse, Skip, and Wild cards(Wild and Wild Draw 4).
-- The first card is randomly gernerated for the equality.(Generation of random game sets or events)
-- Array data structure is used for storing game status. ///////////////////////////////fixed more specifically
-- Dynamic memory allocation is used for storing player's cards (Dynamic Memory Management)
-- File I/O mechanism for storing or loading game status.(File Input/Output)
+- The first card is randomly gernerated for the equality by the function "randomSingleUNO()". (Generation of random game sets or events)
+- Array data structure is used for storing the player's cards and AIs' cards. (Data structures for storing game status) 
+- Dynamic memory allocation is used for storing players and players' cards. (Dynamic Memory Management)
+- File I/O mechanism for storing or loading game status. (File Input/Output)
 - Each critical function (e.g. AI behavior, card effect, etc) is stored in different files rather than main program (Program codes in multiple files)
 - Each functions and variable used are in proper name style with correct indentation (Proper indentation and naming style)
 - Each blocks or lines of code includes explanation for its role (In-code documentation)
@@ -30,7 +30,7 @@ This UNO game implementation provides a command-line interface to play the game 
 1. Clone the repository: 'add github link here'
 2. Navigate to the project directory: `cd uno-game`
 3. Compile the source code: `gcc uno.c -o uno`
-4. Run the game: `./uno`
+4. Run the game: `./hkuno`
 
 ## Usage
 - Upon starting the game, you will be prompted to enter the number of computer opponents and the number of cards for each player starts with.
