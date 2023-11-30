@@ -12,21 +12,34 @@ void display_waitingForAI(playedUNO currentCard, int AIIndex, ListOfCards user[]
     system("clear");
 
     // DEBUG USE
+    cout << "DEBUG:" << endl;
     for ( int k = 0 ; k < numOfPlayers ; k++ ) {
+        cout << k << ": ";
         for ( int j = 0 ; user[k].card[j].col ; j++ ) {
             cout << user[k].card[j].col << user[k].card[j].num << " ";
         }
         cout << endl;
     }
+    cout << endl;
+
+    int *numOfCards = new int[numOfPlayers];
+	for ( int j = 0 ; j < numOfPlayers ; j++ ) {
+        // Count the number of cards
+	    int length = 0;
+	    while ( user[j].card[length].col ) {
+	    	length++;
+	    }
+        numOfCards[j] = length;
+    }
 
     //1 Print the number of AI and which AI is playing on the top 
-    cout << "Current player :" << endl;
-    cout << "You";
+    cout << "Current player (number of cards left) :" << endl;
+    cout << "You(" << numOfCards[0] << ")";
     for ( int i = 2 ; i < numOfPlayers + 1 ; i++ ) {
         if ( (AIIndex + 1) == i )
-            cout << " \033[1;32;40m[AI" << i << "]\033[0m";
+            cout << " \033[1;32;40m[AI" << i << "(" << numOfCards[i-1] << ")]\033[0m";
         else
-            cout << " AI" << i;
+            cout << " AI" << i << "(" << numOfCards[i-1] << ")";
     }
     cout << endl << endl;
 
@@ -99,6 +112,8 @@ void display_waitingForAI(playedUNO currentCard, int AIIndex, ListOfCards user[]
     cout << endl;
 
     sleep(2);
+
+    delete [] numOfCards;
 
     return;
 }

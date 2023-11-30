@@ -48,14 +48,14 @@ int getValidInitialNumOfCards() {
     int initialNumOfCards;
 
     do {
-        cout << "Enter the initial hand size: ";
+        cout << "Enter the initial hand size (1-49): ";
         cin >> initialNumOfCards;
 
-        if (initialNumOfCards > 0) {
+        if (initialNumOfCards > 0 && initialNumOfCards < 50 ) {
             break;  // Valid input, exit the loop
         }
         else {
-            cout << "Invalid input. Please enter a positive number." << endl;
+            cout << "Invalid input. Please enter a number between 1 and 49." << endl;
         }
     } while (true);
 
@@ -87,7 +87,7 @@ void startNewGame() {
     }
 
     bool reverse = false;   // For reverse card - true if reverse card is played
-    int counter = 0;        // The remainder of counter / numOfPlayers telling which player is going to play
+    int counter = *numOfPlayers * 65536;        // The remainder of counter / numOfPlayers telling which player is going to play
     int round = 0;          // For the leaderboard
 
     playedUNO currentCard;
@@ -109,8 +109,14 @@ void startNewGame() {
     bool crowned = false;
     bool newOrNot = false; // Whether the played card / discard is newly played, then the program can determine whether it needs to execute the card action
     while (!onePlayerNoCards(player, *numOfPlayers)) {
+        
+        // Prevent the counter from reaching zero
+        if ( counter <= *numOfPlayers ) {
+            counter += *numOfPlayers * 65536;
+        }
+        
         // Ask for input of playing card from user or AI
-        if (counter % *numOfPlayers == 0)    // The turn of user
+        if ( counter % *numOfPlayers == 0)    // The turn of user
             currentCard = display_requestUser(player, currentCard, *numOfPlayers, newOrNot);    // The card played by player is stored as "currentCard"
         else {
             int AIIndex = counter % *numOfPlayers;    // The turn of AI
@@ -130,10 +136,10 @@ void startNewGame() {
 	        	switch(check_num){
 	        		case 'D':
 	        			if(reverse == false){ //when it is not reverse, card should be added to next player(counter++)
-	        				Draw2(player, (counter+1)%*numOfPlayers);
+	        				Draw2(player, (counter+1) % *numOfPlayers);
 	        			}
 	        			else{//when it is reverse, card should be added to next player(counter--)
-	        				Draw2(player, (counter-1)%*numOfPlayers);
+	        				Draw2(player, (counter-1) %*numOfPlayers);
 	        			}
 	        			break;
 	        		case 'R':
@@ -151,10 +157,10 @@ void startNewGame() {
 	        		//	break;
 	        		case 'D':
 	        			if(reverse == false){//when it is not reverse, card should be added to next player(counter++)
-	        				WildDraw(player, (counter+1)%*numOfPlayers);
+	        				WildDraw(player, (counter+1) % *numOfPlayers);
 	        			}
 	        			else{//when it is reverse, card should be added to next player(counter--)
-	        				WildDraw(player, (counter-1)%*numOfPlayers);
+	        				WildDraw(player, (counter-1) % *numOfPlayers);
 	        			}
 	        			break;
 	        	}

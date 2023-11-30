@@ -16,18 +16,31 @@ playedUNO display_requestUser( ListOfCards user[] , playedUNO currentCard , int 
     system("clear");
 
     // DEBUG USE
+    cout << "DEBUG:" << endl;
     for ( int k = 0 ; k < numOfPlayer ; k++ ) {
+        cout << k << ": ";
         for ( int j = 0 ; user[k].card[j].col ; j++ ) {
             cout << user[k].card[j].col << user[k].card[j].num << " ";
         }
         cout << endl;
     }
+    cout << endl;
 
-    //1 Print the number of AI on the top 
-    cout << "Current player :" << endl;
-    cout << "\033[1;32;40m[YOU]\033[0m";
+    int *numOfCards = new int[numOfPlayer];
+	for ( int j = 0 ; j < numOfPlayer ; j++ ) {
+        // Count the number of cards
+	    int length = 0;
+	    while ( user[j].card[length].col ) {
+	    	length++;
+	    }
+        numOfCards[j] = length;
+    }
+
+    //1 Print the number of AI and their numbers of cards on the top 
+    cout << "Current player (number of cards left) :" << endl;
+    cout << "\033[1;32;40m[YOU(" << numOfCards[0] << ")]\033[0m";
     for (int i = 2 ; i < (numOfPlayer + 1) ; i++ ) {
-        cout << " AI" << i;
+        cout << " AI" << i << "(" << numOfCards[i-1] << ")";
     }
     cout << endl << endl;
 
@@ -113,12 +126,12 @@ playedUNO display_requestUser( ListOfCards user[] , playedUNO currentCard , int 
         cout << "Which card would you like to play? ";
         cin >> userInput;
 
-        if (userInput == "wq") {
-            // Set the flag to indicate that 'wq' has been played
-            saveAndExit = true;
-            valid = true;
-            return playedUNO();  // Return an empty playedUNO object
-        }
+//        if (userInput == "wq") {
+//            // Set the flag to indicate that 'wq' has been played
+//            saveAndExit = true;
+//            valid = true;
+//            return playedUNO();  // Return an empty playedUNO object
+//        }
 
 
         //EXCEPTION: If user hopes to draw a new card, the loop is exited
@@ -219,6 +232,8 @@ playedUNO display_requestUser( ListOfCards user[] , playedUNO currentCard , int 
         newCard.card.num = num;
         newCard.colourToChange = colToChange;
     }
+
+    delete [] numOfCards;
 
     return newCard;
 }
