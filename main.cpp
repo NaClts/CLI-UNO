@@ -110,7 +110,8 @@ void startNewGame() {
     bool newOrNot = false; // Whether the played card / discard is newly played, then the program can determine whether it needs to execute the card action
     while (!onePlayerNoCards(player, numOfPlayers)) {
 
-        cout << currentCard.card.col << currentCard.card.num << endl;
+	// Add a time delay
+        cout << endl;
         sleep(1);
 
         // Prevent the counter from reaching zero
