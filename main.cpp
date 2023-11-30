@@ -12,6 +12,7 @@
 #include "display_requestUser.h" // For calling display_requestUser()
 #include "display_waitingForAI.h"   // For calling display_waitingForAI()
 #include "whoWin.h"     // For calling of whoWin()
+#include "display_result.h"   // display_result()
 
 using namespace std;
 
@@ -71,10 +72,18 @@ void startNewGame() {
     // Maximum number of players is 10
     ListOfCards player[10];
 
+    // Empty the array
+    for (int i = 0; i < *numOfPlayers; i++) {
+        for (int j = 0; j < 100; j++) {
+            player[i].card[j].col = '\0';
+            player[i].card[j].num = '\0';
+        }
+    }
+
     // Randomly assign initial UNO cards to all players
     for (int i = 0; i < *numOfPlayers; i++) {
         for (int j = 0; j < initialNumOfCards; j++)
-            player[i].card[j] = randomSingleUNO(time(NULL) + i + j);
+            player[i].card[j] = randomSingleUNO(time(NULL) + i*100 + j);
     }
 
     bool reverse = false;   // For reverse card - true if reverse card is played
@@ -98,79 +107,85 @@ void startNewGame() {
     // => the player can still draw a card,
     // => but a random card will be discarded automatically.
     bool crowned = false;
+    bool newOrNot = false; // Whether the played card / discard is newly played, then the program can determine whether it needs to execute the card action
     while (!onePlayerNoCards(player, *numOfPlayers)) {
         // Ask for input of playing card from user or AI
         if (counter % *numOfPlayers == 0)    // The turn of user
-            currentCard = display_requestUser(player, currentCard, *numOfPlayers);    // The card played by player is stored as "currentCard"
+            currentCard = display_requestUser(player, currentCard, *numOfPlayers, newOrNot);    // The card played by player is stored as "currentCard"
         else {
             int AIIndex = counter % *numOfPlayers;    // The turn of AI
             display_waitingForAI(currentCard, AIIndex, player, *numOfPlayers); // Display which AI is playing and wait for a time delay of 1 second
-            currentCard = AI_requestAI(player, AIIndex ,currentCard); // The card played by AI is stored as "currentCard"
+            currentCard = AI_requestAI(player, AIIndex ,currentCard, newOrNot); // The card played by AI is stored as "currentCard"
 
         } 
         ///////////////////////////////////////////
         // (TO BE FILLED) Action after each cards//
         ///////////////////////////////////////////
-    char check_col = currentCard.card.col;
-    char check_num = currentCard.card.num;
-    // check the color whether it is 'n' or not
-    if(check_col != 'n'){ //if it is not, card effect only for D, R, S
-		switch(check_num){
-			case 'D':
-				if(reverse == false){ //when it is not reverse, card should be added to next player(counter++)
-					Draw2(player, (counter+1)%*numOfPlayers);
-				}
-				else{//when it is reverse, card should be added to next player(counter--)
-					Draw2(player, (counter-1)%*numOfPlayers);
-				}
-				break;
-			case 'R':
-				reverse = (reverse == false) ? true : false; // when reverse == false, then set true and vice versa
-				break;
-			case 'S':
-				skip(counter, reverse);
-				break;
-		}
-	}
-	else{ // if the color is 'n', only 'W', 'D' 
-		switch(check_num){
-			//case 'W':
-			//	Wild(currentCard);
-			//	break;
-			case 'D':
-				if(reverse == false){//when it is not reverse, card should be added to next player(counter++)
-					WildDraw(player, (counter+1)%*numOfPlayers);
-				}
-				else{//when it is reverse, card should be added to next player(counter--)
-					WildDraw(player, (counter-1)%*numOfPlayers);
-				}
-				break;
-		}
-	}
+        // Action only if the card is new
+        if ( newOrNot ) {
+            char check_col = currentCard.card.col;
+            char check_num = currentCard.card.num;
+            // check the color whether it is 'n' or not
+            if(check_col != 'n'){ //if it is not, card effect only for D, R, S
+	        	switch(check_num){
+	        		case 'D':
+	        			if(reverse == false){ //when it is not reverse, card should be added to next player(counter++)
+	        				Draw2(player, (counter+1)%*numOfPlayers);
+	        			}
+	        			else{//when it is reverse, card should be added to next player(counter--)
+	        				Draw2(player, (counter-1)%*numOfPlayers);
+	        			}
+	        			break;
+	        		case 'R':
+	        			reverse = (reverse == false) ? true : false; // when reverse == false, then set true and vice versa
+	        			break;
+	        		case 'S':
+	        			skip(counter, reverse);
+	        			break;
+	        	}
+	        }
+	        else{ // if the color is 'n', only 'W', 'D' 
+	        	switch(check_num){
+	        		//case 'W':
+	        		//	Wild(currentCard);
+	        		//	break;
+	        		case 'D':
+	        			if(reverse == false){//when it is not reverse, card should be added to next player(counter++)
+	        				WildDraw(player, (counter+1)%*numOfPlayers);
+	        			}
+	        			else{//when it is reverse, card should be added to next player(counter--)
+	        				WildDraw(player, (counter-1)%*numOfPlayers);
+	        			}
+	        			break;
+	        	}
+	        }
+        }
+
         // Pass the turn to the next player
         if (reverse == true)
             counter--;
         else
             counter++;
-       
+        newOrNot = false;
         // Determine and display who wins while no one played all the cards
         int winPlayerIndex = whoWin(player, *numOfPlayers);
         if (winPlayerIndex > -1) {
-            display_result(winPlayerIndex, round);
+            display_result(player, *numOfPlayers);
             crowned = true;
             break;
         }
         // Save game progress
-        bool saveAndExit = saveGameProgress(player, *numOfPlayers, currentCard, counter, round);
-        if (saveAndExit) {
-            cout << "Game progress saved. Goodbye!" << endl;
-            return;
-        }
+        //bool saveAndExit = saveGameProgress(player, *numOfPlayers, currentCard, counter, round);
+        //if (saveAndExit) {
+        //    cout << "Game progress saved. Goodbye!" << endl;
+        //    return;
+        //}
+    }
 
     // Determine and display who wins while someone played all the cards
     if (crowned == false){
         int winPlayerIndex = whoWin(player, *numOfPlayers);
-        display_result(winPlayerIndex, round);
+        display_result(player, *numOfPlayers);
     }
     delete numOfPlayers; 
 }
@@ -188,14 +203,14 @@ int main() {
         case 1:
             startNewGame();
             break;
-        case 2:
-	    if (loadGameProgress(loadFile, player, numOfPlayers, currentCard, counter, round)) {
-		cout << "Game loaded successfully! Starting the game..." << endl;
-		startNewGame();
-	    } else {
-		cout << "Failed to load the game. Starting a new game instead." << endl;
-	    }
-	    break;
+        //case 2:
+	    //if (loadGameProgress(loadFile, player, numOfPlayers, currentCard, counter, round)) {
+		//cout << "Game loaded successfully! Starting the game..." << endl;
+		//startNewGame();
+	    //} else {
+		//cout << "Failed to load the game. Starting a new game instead." << endl;
+	    //}
+	    //break;
         case 3:
             // Add code for about game
             cout << "UNO Game - About" << endl;

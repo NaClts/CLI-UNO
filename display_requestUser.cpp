@@ -3,7 +3,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>  // For file input/output
-#include "SaveAndLoad.cpp"  // For calling SaveGameProgress() and LoadGameProgress()
+//#include "SaveAndLoad.cpp"  // For calling SaveGameProgress() and LoadGameProgress()
 #include <cstdlib>  // For calling srand(), rand()
 #include <ctime>    // For calling time()
 #include "selfDefStruct.h"  // For the calling of self-defined structures (UNO, playedUNO, listOfCards)
@@ -11,9 +11,17 @@
 #include "display_requestUser.h"    // Allow other programs to call this function via the header file
 using namespace std;
 
-playedUNO display_requestUser( ListOfCards user[] , playedUNO currentCard , int numOfPlayer ) {
+playedUNO display_requestUser( ListOfCards user[] , playedUNO currentCard , int numOfPlayer , bool &newOrNot ) {
 
     system("clear");
+
+    // DEBUG USE
+    for ( int k = 0 ; k < numOfPlayer ; k++ ) {
+        for ( int j = 0 ; user[k].card[j].col ; j++ ) {
+            cout << user[k].card[j].col << user[k].card[j].num << " ";
+        }
+        cout << endl;
+    }
 
     //1 Print the number of AI on the top 
     cout << "Current player :" << endl;
@@ -94,7 +102,7 @@ playedUNO display_requestUser( ListOfCards user[] , playedUNO currentCard , int 
     cout << "Please enter the colour of the card following by the NUMBER/ACTION" << endl;
     cout << "For example: yD (Yellow Draw 2), nW (Wild), nD (Draw 4)" << endl;
     cout << "If you want to draw extra card, enter DRAW" << endl;
-    cout << "If you want to save and exit the game, enter 'wq'" << endl；
+    cout << "If you want to save and exit the game, enter 'wq'" << endl;
 
     //5 Checking whether the card to be inputed by player is valid
     //    If not, the user will be asked again
@@ -106,11 +114,12 @@ playedUNO display_requestUser( ListOfCards user[] , playedUNO currentCard , int 
         cin >> userInput;
 
         if (userInput == "wq") {
-        // Set the flag to indicate that 'wq' has been played
-        saveAndExit = true;
-        valid = true;
-        return playedUNO();  // Return an empty playedUNO object
-    }
+            // Set the flag to indicate that 'wq' has been played
+            saveAndExit = true;
+            valid = true;
+            return playedUNO();  // Return an empty playedUNO object
+        }
+
 
         //EXCEPTION: If user hopes to draw a new card, the loop is exited
         if ( userInput == "DRAW" ) {
@@ -171,6 +180,7 @@ playedUNO display_requestUser( ListOfCards user[] , playedUNO currentCard , int 
     playedUNO newCard;
 
     if ( draw ) {
+        newOrNot = false;
         // The round is skipped and the current discard remains
         newCard = currentCard;
         
@@ -193,6 +203,7 @@ playedUNO display_requestUser( ListOfCards user[] , playedUNO currentCard , int 
         }
     }
     else {
+        newOrNot = true;
         // Put the cards to the front and replace the played card
         while ( user[0].card[i+1].col ) {
             user[0].card[i] = user[0].card[i+1];

@@ -11,6 +11,14 @@ void display_waitingForAI(playedUNO currentCard, int AIIndex, ListOfCards user[]
 
     system("clear");
 
+    // DEBUG USE
+    for ( int k = 0 ; k < numOfPlayers ; k++ ) {
+        for ( int j = 0 ; user[k].card[j].col ; j++ ) {
+            cout << user[k].card[j].col << user[k].card[j].num << " ";
+        }
+        cout << endl;
+    }
+
     //1 Print the number of AI and which AI is playing on the top 
     cout << "Current player :" << endl;
     cout << "You";
