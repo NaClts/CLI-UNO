@@ -8,8 +8,8 @@
 #include "random.h"
 
 void skip(int& counter, bool reverse);
-void Draw2(ListOfCards& player[AIIndex], int handsize);
-void Wild(playedUNO& currentCard, int size);
-void WildDraw(ListOfCards& player[AIIndex], int handsize);
+void Draw2(ListOfCards player[], int AIIndex);
+//void Wild(playedUNO& currentCard, int size);
+void WildDraw(ListOfCards player[], int handsize);
 
 #endif // CARD_EFFECT_H

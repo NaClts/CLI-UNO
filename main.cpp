@@ -134,9 +134,9 @@ void startNewGame() {
 	}
 	else{ // if the color is 'n', only 'W', 'D' 
 		switch(check_num){
-			case 'W':
-				Wild(currentCard);
-				break;
+			//case 'W':
+			//	Wild(currentCard);
+			//	break;
 			case 'D':
 				if(reverse == false){//when it is not reverse, card should be added to next player(counter++)
 					WildDraw(player, (counter+1)%*numOfPlayers);
