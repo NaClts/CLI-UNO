@@ -29,7 +29,7 @@ This UNO game implementation provides a command-line interface to play the game 
 ## Compliation & Installation
 1. Clone the repository: 'add github link here'
 2. Navigate to the project directory: `cd uno-game`
-3. Compile the source code: `gcc uno.c -o uno`
+3. Compile the source code: `make`
 4. Run the game: `./hkuno`
 
 ## Controls & Instructions (How to play)
