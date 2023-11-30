@@ -5,7 +5,7 @@ ENGG1340 / COMP 2113 Group Project 2023/2024 - Group #21
 ## Team members(name (UID)in alphabetical order)
 - Baek Seunghyeon (3035821659)
 - Fan Zihan (3035948471)
-- Please add your info here
+- Wei Jianfeng (3036094899)
 
 ## Description
 UNO is a classic card game that is played with a specially printed deck. The objective of the game is to be the first player to get rid of all your cards. Players take turns matching a card in their hand with the current card shown on top of the deck either by color or number. The game also includes special action cards that can change the course of the game. With this idea, we designed text-based UNO game called HKUNO based on C++. This UNO game supports saving and loading options for players for convenience.  
