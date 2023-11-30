@@ -11,16 +11,16 @@ void display_waitingForAI(playedUNO currentCard, int AIIndex, ListOfCards player
 
     system("clear");
 
-    // DEBUG USE
-    cout << "DEBUG:" << endl;
-    for ( int i = 0 ; i < numOfPlayers ; i++ ) {
-        cout << i << ": ";
-        for ( int j = 0 ; j < player[i].card.size() ; j++ ) {
-            cout << player[i].card[j].col << player[i].card[j].num << " ";
-        }
-        cout << endl;
-    }
-    cout << endl;
+//    // DEBUG USE
+//    cout << "DEBUG:" << endl;
+//    for ( int i = 0 ; i < numOfPlayers ; i++ ) {
+//        cout << i << ": ";
+//        for ( int j = 0 ; j < player[i].card.size() ; j++ ) {
+//            cout << player[i].card[j].col << player[i].card[j].num << " ";
+//        }
+//        cout << endl;
+//    }
+//    cout << endl;
 
     int *numOfCards = new int[numOfPlayers];
 	for ( int i = 0 ; i < numOfPlayers ; i++ ) {
