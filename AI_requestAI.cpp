@@ -72,7 +72,7 @@ playedUNO easyAI(ListOfCards player[], int AIIndex, playedUNO currentCard, bool 
         UNO newDraw = randomSingleUNO(time(NULL) - 246810);
         
         // Add a new random card
-        player[0].card.push_back(newDraw);
+        player[AIIndex].card.push_back(newDraw);
     }
 	
 	// Tell the main() if the acrd is newly played
