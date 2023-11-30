@@ -1,6 +1,8 @@
 #include <iostream>
+#include <ctime>
+#include <cstdlib>
 #include "selfDefStruct.h"
-
+#include "random.h"
 
 playedUNO easyAI(ListOfCards &player[], int AIIndex, playedUNO &currentCard){ // AI mode is defined based on how the AI search for what card to put
 	// easyAI search the array of card and find the first occurrence of appropriate card
