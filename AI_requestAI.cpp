@@ -22,6 +22,12 @@ playedUNO easyAI(ListOfCards player[], int AIIndex, playedUNO currentCard, bool 
 			if(!player[AIIndex].card[i].col){ // when there is no card anymore // when the col is empty, there is no card
 				break;
 			}
+			if(player[AIIndex].card[i].col == 'n' && found == false){ // when AI found black card and not played yet
+				currnetCard.card == player[AIIndex].card[i]; // put black card
+				pos = i;
+				found = true;
+				break;
+			}
 		}
 		if(!found == true){ // if no match card with same color, check for the same number
 			for (int i = 0; i < 100 ; i++){
@@ -66,7 +72,7 @@ playedUNO easyAI(ListOfCards player[], int AIIndex, playedUNO currentCard, bool 
 	}
 
 	// Put out a draw 4 card / wild card if necessary
-
+	
 	// Count the number of cards
 	int length = 0;
 	while ( player[AIIndex].card[length].col ) {
