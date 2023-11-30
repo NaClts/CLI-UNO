@@ -4,6 +4,7 @@
 #include <fstream>  // for filr input/output
 #include <cstdlib>  // For calling srand(), rand()
 #include <ctime>    // For calling time()
+#include <unistd.h>     // For the calling of sleep()
 #include "onehavenocards.h"
 #include "selfDefStruct.h"    // For calling struct UNO & ListOfCards
 #include "random.h" // For calling randomSingleUNO()
