@@ -65,23 +65,23 @@ playedUNO easyAI(ListOfCards &player[], int AIIndex, playedUNO &currentCard){ //
 	
 //number of players = numOfPlayer = array size of player[]
 
-playedUNO AI_requestAI(ListOfCards player[AIIndex], int handsize, playedUNO &currentCard){ //player[AIIndex] size is required
+playedUNO AI_requestAI(ListOfCards player[], int AIIndex, playedUNO &currentCard){ //player[AIIndex] size is required
 	char check_col = currentCard.card.col;
 	switch(check_col){
 		case 'b':
-			currentCard = easyAI(player[], AIIndex, currentCard);
+			currentCard = easyAI(player, AIIndex, currentCard);
 			break;
 		case 'r':
-			currentCard = easyAI(player[], AIIndex, currentCard);
+			currentCard = easyAI(player, AIIndex, currentCard);
 			break;
 		case 'g':
-			currentCard = easyAI(player[], AIIndex, currentCard);
+			currentCard = easyAI(player, AIIndex, currentCard);
 			break;
 		case 'y':
-			currentCard = easyAI(player[], AIIndex, currentCard);
+			currentCard = easyAI(player, AIIndex, currentCard);
 			break;
 		case 'n':
-			currentCard = easyAI(player[], AIIndex, currentCard);
+			currentCard = easyAI(player, AIIndex, currentCard);
 	}
 	return currentCard;
 }
