@@ -16,12 +16,15 @@ This UNO game implementation provides a command-line interface to play the game 
 - Play against computer opponents.
 - Interactive command-line interface. //change if this is not true
 - Special action cards: Draw 2, Reverse, Skip, and Wild cards(Wild and Wild Draw 4).
-- The first card is randomly gernerated for the equality.
-- Array data structure is used for storing game status ///////////////////////////////fixed more specifically
-- Dynamic memory allocation is used for storing player's cards
-- File I/O mechanism for storing or loading game status
+- The first card is randomly gernerated for the equality.(Generation of random game sets or events)
+- Array data structure is used for storing game status. ///////////////////////////////fixed more specifically
+- Dynamic memory allocation is used for storing player's cards (Dynamic Memory Management)
+- File I/O mechanism for storing or loading game status.(File Input/Output)
+- Each critical function (e.g. AI behavior, card effect, etc) is stored in different files rather than main program (Program codes in multiple files)
+- Each functions and variable used are in proper name style with correct indentation (Proper indentation and naming style)
+- Each blocks or lines of code includes explanation for its role (In-code documentation)
 
-## Installation
+## Compliation & Installation
 1. Clone the repository: 'add github link here'
 2. Navigate to the project directory: `cd uno-game`
 3. Compile the source code: `gcc uno.c -o uno`
@@ -41,7 +44,7 @@ Special cards like 'skip', 'Draw 2', 'wild', and 'wild draw 4' will be automatic
 
 Please note that the game assumes valid inputs from the user for the seamless gaming experience.
 
-## License
+## Non-standard C/C++ libraries
 
 
 ## Credits
