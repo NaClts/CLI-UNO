@@ -48,7 +48,7 @@ Based on your choice, you can start a new game or load a game if you have previo
 You will be prompted to enter the number of AI opponents and the number of cards for each player to start with. The remaining deck is placed in the center and the random top card is revealed to start the discard pile.
 
 2. During Your Turn: 
-During your turn, you have to make a decision, to put valid card or draw on card from the deck and finish the turn. To put the valid card, you need to check the color or number of the current card. 
+During your turn, you have to make a decision, to put valid card or draw on card from the deck and finish the turn. To put the valid card, you need to check the color or number of the current card. When you type the card you need to type "color""number" without any space between color and number.
 
 3. Special Cards: 
 There are special cards in the game like 'Skip', 'Reverse', 'Draw Two', 'Wild', and 'Wild Draw Four' which have unique effects on the gameplay.
@@ -70,9 +70,8 @@ The first player who puts all his/her cards in hand is going to be the winner. M
 
 NOTE: Please note that the game assumes valid inputs from the user for the seamless gaming experience.
 
-## Non-standard C/C++ libraries
 
 
 ## Credits
-- UNO game rules and concept by
-- "Contribution" by "Your name"
+- UNO game rules and concept by group#21
+
