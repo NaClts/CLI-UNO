@@ -9,7 +9,7 @@ void display_result(ListOfCards player[], int numOfPlayer) {
     if (winner == -1) {
         std::cout << "The game is still ongoing.\n";
     } else if (winner == 0) {
-        std::cout << "The human player has won the game!\n";
+        std::cout << "You have won the game!\n";
     } else {
         std::cout << "AI #" << winner << " has won the game!\n";
     }
