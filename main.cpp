@@ -109,7 +109,10 @@ void startNewGame() {
     bool crowned = false;
     bool newOrNot = false; // Whether the played card / discard is newly played, then the program can determine whether it needs to execute the card action
     while (!onePlayerNoCards(player, numOfPlayers)) {
-        
+
+        cout << currentCard.card.col << currentCard.card.num << endl;
+        sleep(1
+
         // Prevent the counter from reaching zero
         if ( counter <= numOfPlayers ) {
             counter += numOfPlayers * 65536;
