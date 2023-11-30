@@ -37,10 +37,27 @@ This UNO game implementation provides a command-line interface to play the game 
 - The game will automatically simulate the turns of computer opponents.
 - Continue playing until a player wins by getting rid of all their cards.
 
-## Controls (How to play)
-The game is entirely controlled via the command line interface. When it's your turn, you'll be presented with the cards in your hand. Each card will be associated with a number. To play a card, simply type the number associated with that card and press enter.
+## Controls & Instructions (How to play)
+Starting the Game: 
+The game starts by dealing a certain number of cards to each player. The remaining deck is placed in the center and the top card is revealed to start the discard pile.
 
-Special cards like 'skip', 'Draw 2', 'wild', and 'wild draw 4' will be automatically played by the game when drawn.
+During Your Turn: 
+During your turn, you must match a card from your hand to the card on the top of the discard pile. The match can be based on number, color, or symbol.
+
+Special Cards: 
+There are special cards in the game like 'Skip', 'Reverse', 'Draw Two', 'Wild', and 'Wild Draw Four' which have unique effects on the gameplay.
+
+AI Players: 
+The game features AI players. Their behavior is defined in the AI_requestAI.cpp file.
+
+Saving and Loading Game Progress: 
+You can save and load game progress. The functionality for this is defined in SaveAndLoad.cpp.
+
+Ending Your Turn: 
+If you cannot play a card from your hand, you have to draw a card from the deck.
+
+Winning the Game: 
+The first player to get rid of all their cards in hand is the winner.
 
 Please note that the game assumes valid inputs from the user for the seamless gaming experience.
 
