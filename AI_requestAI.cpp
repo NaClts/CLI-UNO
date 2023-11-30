@@ -59,6 +59,15 @@ playedUNO easyAI(ListOfCards &player[], int AIIndex, playedUNO &currentCard){ //
 			player[AIIndex].card[99].num = '\0';
 		}
 	}
+	if(found == false){ // if the AI doesnt have any option to play
+		draw_card = randomSingleUNO(time(NULL)+5678); // generate one random card 
+		for(int j = 0; j < 100 ; j++){
+			if(player[AIIndex].card[j].col){ //check the last card
+				player[AIIndex].card[j] = draw_card; // add the random card in hand
+				break;
+			}
+		}
+	}
 	return currentCard;
 }
 	
