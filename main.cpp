@@ -160,8 +160,12 @@ void startNewGame() {
             crowned = true;
             break;
         }
-        saveGameProgress(saveFile, player, numOfPlayers, currentCard, counter, round);
-    }
+        // Save game progress
+        bool saveAndExit = saveGameProgress(player, *numOfPlayers, currentCard, counter, round);
+        if (saveAndExit) {
+            cout << "Game progress saved. Goodbye!" << endl;
+            return;
+        }
 
     // Determine and display who wins while someone played all the cards
     if (crowned == false){
