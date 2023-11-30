@@ -1,6 +1,6 @@
-# ENGG1340 / COMP 2113 Group Project 2023/2024
-# HKUNO Game
-#Team members
+# /////////Welcome to HKUNO Game ///////////
+ENGG1340 / COMP 2113 Group Project 2023/2024
+# Team members
 (name (UID)in alphabetical order)
 -Baek Seunghyeon (3035821659)
 -Fan Zihan (3035948471)
