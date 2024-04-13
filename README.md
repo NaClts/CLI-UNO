@@ -16,6 +16,7 @@ This UNO game implementation provides a command-line interface to play the game 
 
 ## Demo Video
 https://youtu.be/6-ZZYB4tENA
+[![Demo Video](https://img.youtube.com/vi/6-ZZYB4tENA/0.jpg)](https://www.youtube.com/watch?v=6-ZZYB4tENA)
 
 ## Features
 - Play against computer opponents.
